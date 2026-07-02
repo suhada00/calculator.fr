@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.simulateur-gratuit.com',
+  site: 'https://www.simulateurplus.com',
   output: 'static',
   i18n: {
     defaultLocale: 'en',

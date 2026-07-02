@@ -3,7 +3,7 @@ import categories from '../data/categories.json';
 import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async ({ site }) => {
-  const siteUrl = site?.origin || 'https://www.simulateur-gratuit.com';
+  const siteUrl = site?.origin || 'https://www.simulateurplus.com';
   
   const files = import.meta.glob('../data/calculators/**/*.json', { eager: true });
   
