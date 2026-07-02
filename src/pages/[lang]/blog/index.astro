@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Card from '../../../components/ui/Card.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../../lib/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'fr' } }
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang || 'en';
+const t = useTranslations(locale);
+
+const alternateLang = locale === 'en' ? 'fr' : 'en';
+const alternateUrls = {
+  en: '/en/blog/',
+  fr: '/fr/blog/'
+};
+
+// Fetch blog posts for this language
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((post) => post.data.lang === locale)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const title = locale === 'fr' ? 'Nos Guides & Articles' : 'Our Guides & Articles';
+const description = locale === 'fr' 
+  ? 'Découvrez nos guides pratiques et explications détaillées pour vous accompagner dans vos calculs de finance, santé, conversion et vie quotidienne.'
+  : 'Explore our practical guides and detailed explanations to assist you with finance, health, conversion, and everyday calculations.';
+
+const breadcrumbs = [
+  { name: locale === 'fr' ? 'Accueil' : 'Home', item: `/${locale}/` },
+  { name: 'Blog', item: `/${locale}/blog/` }
+];
+---
+
+<BaseLayout
+  title={`${title} — EuroCalc`}
+  description={description}
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="max-w-4xl mx-auto py-8 px-4 md:py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-3xl md:text-5xl font-black text-text-heading tracking-tight mb-4">
+        {title}
+      </h1>
+      <p class="text-lg text-text-muted max-w-2xl mx-auto">
+        {description}
+      </p>
+    </div>
+
+    <!-- Posts Grid -->
+    {posts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {posts.map((post) => {
+          const cleanSlug = post.id.split('/').pop().replace(/\.md$/, '');
+          const href = `/${locale}/blog/${cleanSlug}/`;
+          
+          return (
+            <Card class="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
+              <div class="p-6 flex flex-col flex-grow">
+                <!-- Meta Info -->
+                <div class="flex items-center gap-2 text-xs font-semibold text-primary-500 mb-3">
+                  <span class="bg-primary-500/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    {post.data.category}
+                  </span>
+                  <span class="text-text-muted">•</span>
+                  <span class="text-text-muted font-normal">
+                    {post.data.pubDate.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </span>
+                </div>
+                
+                <!-- Title -->
+                <h2 class="text-xl font-bold text-text-heading mb-3 hover:text-primary-500 transition-colors line-clamp-2">
+                  <a href={href}>{post.data.title}</a>
+                </h2>
+                
+                <!-- Description -->
+                <p class="text-sm text-text-muted line-clamp-3 mb-6 flex-grow leading-relaxed">
+                  {post.data.description}
+                </p>
+                
+                <!-- Read More Link -->
+                <div class="mt-auto">
+                  <a 
+                    href={href} 
+                    class="inline-flex items-center gap-1.5 text-sm font-bold text-primary-500 hover:text-primary-600 group"
+                  >
+                    {locale === 'fr' ? 'Lire la suite' : 'Read Full Guide'}
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </Card>
+          );
+        })}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <p class="text-text-muted">
+          {locale === 'fr' ? 'Aucun article disponible pour le moment.' : 'No articles available at this time.'}
+        </p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

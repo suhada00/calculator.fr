@@ -1,0 +1,89 @@
+{
+  "slug": "age-calculator",
+  "category": "everyday",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "age-calculator",
+  "inputs": [
+    {
+      "key": "birthDate",
+      "type": "date",
+      "default": "1990-06-15",
+      "translations": {
+        "en": { "label": "Date of Birth" },
+        "fr": { "label": "Date de naissance" }
+      }
+    },
+    {
+      "key": "targetDate",
+      "type": "date",
+      "default": "2026-07-02",
+      "translations": {
+        "en": { "label": "Age at Date" },
+        "fr": { "label": "Âge à la date du" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "years",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Years" },
+        "fr": { "label": "Ans" }
+      }
+    },
+    {
+      "key": "months",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Months" },
+        "fr": { "label": "Mois" }
+      }
+    },
+    {
+      "key": "days",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Days" },
+        "fr": { "label": "Jours" }
+      }
+    },
+    {
+      "key": "daysToNextBirthday",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Days to Next Birthday" },
+        "fr": { "label": "Jours avant le prochain anniversaire" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Age Calculator",
+      "slug": "age-calculator",
+      "metaDescription": "Calculate your exact age in years, months, and days instantly. Discover the number of days remaining until your next birthday.",
+      "intro": "An age calculator is a simple yet powerful utility designed to determine the precise duration of time between a person's birth date and a specific target date (defaulting to the current day). While calculating age in years is usually straightforward, calculating the exact breakdown down to the current month and day is much more complex due to the varying lengths of months and leap years. By entering your birth date and target date, this calculator performs these complex calculations instantly. In addition to displaying your exact age in years, months, and days, the simulator calculates the exact countdown of days left until your next birthday. This is extremely useful for planning celebrations, administrative forms, retirement calculations, and milestones. Using our tool ensures you always have the most accurate time-elapsed data at your fingertips, removing any risk of human counting errors during planning. It saves you from manual calendars and delivers precise calculations instantly for any age-related milestone you want to check.",
+      "methodology": "<p>This age calculator computes the time interval between two dates by comparing calendar year, month, and day fields:</p><ul><li>Years are calculated as the difference between target and birth years.</li><li>Months and days are adjusted according to the length of each calendar month.</li><li>If the target day is less than the birth day, we borrow days from the previous month to calculate the exact remaining day offset.</li></ul><p>Next birthday countdown is computed by creating a temporary date for the next birthday and subtracting the current timestamp.</p>",
+      "faq": [
+        { "q": "How does the calculator handle leap years?", "a": "The calculator uses JavaScript's native Date object, which automatically accounts for February having 29 days in leap years (such as 2024, 2028, etc.)." },
+        { "q": "Can I calculate my age at a future date?", "a": "Yes. By altering the 'Age at Date' input to any future date, the tool will project exactly how old you will be at that moment." },
+        { "q": "Does time zone affect the calculated age?", "a": "Yes, slightly. The calculator runs on the local time zone of your browser, which may result in a one-day difference if your birthday is calculated close to midnight." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur d'Âge",
+      "slug": "calculateur-d-age",
+      "metaDescription": "Calculez votre âge exact en années, mois et jours. Découvrez également le nombre de jours restants avant votre prochain anniversaire.",
+      "intro": "Un calculateur d'âge est un outil simple et efficace conçu pour estimer la durée exacte écoulée entre votre date de naissance et une date cible choisie (par défaut la date d'aujourd'hui). Bien qu'il soit simple de calculer l'âge uniquement en années, obtenir la précision exacte en mois et en jours s'avère fastidieux à cause des années bissextiles et du nombre variable de jours par mois (28, 30 ou 31 jours). En renseignant votre date de naissance, le simulateur se charge de résoudre ces calculs calendaires. En plus de votre âge exact, le calculateur affiche un compte à rebours précis indiquant le nombre de jours à attendre avant votre prochain anniversaire. C'est un indicateur pratique pour organiser un événement, remplir des dossiers administratifs officiels ou encore anticiper des échéances professionnelles importantes dans votre parcours. Avec notre application fluide, obtenez vos réponses instantanément sans aucune perte de temps ou calcul mental laborieux.",
+      "methodology": "<p>Ce calculateur d'âge évalue l'intervalle temporel en effectuant des soustractions successives sur les champs de date :</p><ul><li>Soustraction directe de l'année, du mois et du jour d'origine de la date cible.</li><li>Si le jour cible est inférieur au jour de naissance, l'algorithme 'emprunte' les jours du mois précédent pour obtenir un résultat exact.</li><li>Le calcul de l'anniversaire projette la date de naissance dans l'année en cours ou suivante pour calculer la différence.</li></ul>",
+      "faq": [
+        { "q": "Le calculateur gère-t-il les années bissextiles ?", "a": "Oui. L'algorithme se base sur l'objet Date natif qui prend correctement en compte les mois de février de 29 jours (comme en 2024 ou 2028)." },
+        { "q": "Puis-je calculer mon âge à une date passée ?", "a": "Oui, vous pouvez renseigner n'importe quelle date passée (postérieure à votre naissance) dans le champ de destination pour connaître votre âge précis à ce moment-là." },
+        { "q": "Pourquoi mon âge change-t-il d'un jour selon les appareils ?", "a": "Le calcul s'effectue selon le fuseau horaire de votre système. Si vous effectuez le calcul près de minuit, un léger décalage peut survenir." }
+      ]
+    }
+  },
+  "relatedTo": ["tip-calculator", "discount-calculator"],
+  "tags": ["everyday", "age", "time", "date"]
+}

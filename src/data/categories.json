@@ -1,0 +1,54 @@
+{
+  "finance": {
+    "id": "finance",
+    "translations": {
+      "en": {
+        "name": "Finance",
+        "slug": "finance"
+      },
+      "fr": {
+        "name": "Finance",
+        "slug": "finance"
+      }
+    }
+  },
+  "health": {
+    "id": "health",
+    "translations": {
+      "en": {
+        "name": "Health",
+        "slug": "health"
+      },
+      "fr": {
+        "name": "Santé",
+        "slug": "sante"
+      }
+    }
+  },
+  "conversion": {
+    "id": "conversion",
+    "translations": {
+      "en": {
+        "name": "Conversion",
+        "slug": "conversion"
+      },
+      "fr": {
+        "name": "Convertisseurs",
+        "slug": "convertisseurs"
+      }
+    }
+  },
+  "everyday": {
+    "id": "everyday",
+    "translations": {
+      "en": {
+        "name": "Everyday",
+        "slug": "everyday"
+      },
+      "fr": {
+        "name": "Vie Quotidienne",
+        "slug": "vie-quotidienne"
+      }
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "slug": "retirement-projection-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "retirement-projection",
+  "inputs": [
+    {
+      "key": "currentAge",
+      "type": "number",
+      "min": 18,
+      "max": 70,
+      "step": 1,
+      "default": 30,
+      "translations": {
+        "en": { "label": "Current Age" },
+        "fr": { "label": "Âge actuel" }
+      }
+    },
+    {
+      "key": "retirementAge",
+      "type": "number",
+      "min": 50,
+      "max": 80,
+      "step": 1,
+      "default": 65,
+      "translations": {
+        "en": { "label": "Retirement Target Age" },
+        "fr": { "label": "Âge de départ à la retraite" }
+      }
+    },
+    {
+      "key": "currentSavings",
+      "type": "number",
+      "min": 0,
+      "max": 10000000,
+      "step": 1000,
+      "default": 50000,
+      "translations": {
+        "en": { "label": "Current Retirement Savings (€)" },
+        "fr": { "label": "Épargne retraite actuelle (€)" }
+      }
+    },
+    {
+      "key": "monthlyContribution",
+      "type": "number",
+      "min": 0,
+      "max": 50000,
+      "step": 50,
+      "default": 300,
+      "translations": {
+        "en": { "label": "Monthly Contribution (€)" },
+        "fr": { "label": "Versement mensuel (€)" }
+      }
+    },
+    {
+      "key": "annualReturnRate",
+      "type": "number",
+      "min": 0,
+      "max": 15,
+      "step": 0.1,
+      "default": 6,
+      "translations": {
+        "en": { "label": "Annual Growth Rate / Return (%)" },
+        "fr": { "label": "Taux de rendement annuel (%)" }
+      }
+    },
+    {
+      "key": "inflationRate",
+      "type": "number",
+      "min": 0,
+      "max": 10,
+      "step": 0.1,
+      "default": 2,
+      "translations": {
+        "en": { "label": "Annual Inflation Rate (%)" },
+        "fr": { "label": "Taux d'inflation annuel (%)" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "futureValueNominal",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Nominal Capital at Retirement" },
+        "fr": { "label": "Capital nominal à la retraite" }
+      }
+    },
+    {
+      "key": "futureValueReal",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Real Capital (Inflation Adjusted)" },
+        "fr": { "label": "Capital réel (ajusté à l'inflation)" }
+      }
+    },
+    {
+      "key": "totalInvested",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Savings Contributed" },
+        "fr": { "label": "Total cumulé de vos versements" }
+      }
+    },
+    {
+      "key": "totalInterest",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Interest Earned" },
+        "fr": { "label": "Total des gains d'intérêts" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Retirement Savings Projection Calculator",
+      "slug": "retirement-savings-projection-calculator",
+      "metaDescription": "Project your future retirement savings. Compare nominal and inflation-adjusted real balances to estimate future buying power.",
+      "intro": "A retirement savings projection calculator is an essential planning tool designed to help workers estimate the size of their future nest egg and plan for their financial independence. Preparing for retirement requires a clear understanding of how regular monthly contributions accumulate over your working life, and how compound interest speeds up growth. By entering your current age, your target retirement age, your current starting balance, and your planned monthly contribution, you can visualize the accumulation of your wealth over time. To ensure realistic results, this calculator estimates two key balances: the nominal balance (which is the actual numeric total of your savings) and the inflation-adjusted real balance (which translates that future total into today's buying power). Factoring in inflation is critical because it ensures your future goals are realistic. Use this simulator to compare savings rates and rate-of-return assumptions, and take control of your financial future. Having this information early allows you to make adjustments today to ensure a comfortable lifestyle in your retirement years.",
+      "methodology": "<p>This retirement calculator projects growth over your active career (retirement age minus current age):</p><ul><li><strong>Nominal Growth:</strong> Compounds interest monthly using the nominal interest rate: <code>Balance = Balance * (1 + (Return Rate / 12 / 100)) + Monthly Contribution</code>.</li><li><strong>Real Growth (Inflation-Adjusted):</strong> Compounds interest monthly using the real interest rate adjusted for inflation: <code>Balance = Balance * (1 + ((Return Rate - Inflation Rate) / 12 / 100)) + Monthly Contribution</code>.</li></ul><p>Total contributions are calculated as <code>Monthly Contribution * total months</code>. Total interest is nominal value minus total contributions and starting savings.</p>",
+      "faq": [
+        { "q": "Why is it important to adjust retirement savings for inflation?", "a": "Inflation reduces the purchasing power of money. A million euros in 30 years will buy significantly less than a million euros today. Adjusting for inflation allows you to see the true buying power of your future savings." },
+        { "q": "What is the Plan d'Épargne Retraite (PER) in France?", "a": "The PER is a long-term retirement savings plan introduced in France in 2019. It allows individuals to accumulate savings during their career, with the benefit of tax-deductible contributions, to be paid out as a lump sum or annuity at retirement." },
+        { "q": "How does compound interest help in retirement planning?", "a": "Compound interest acts as a multiplier. The interest you earn is added back to your balance, earning more interest in the next period. Over decades, this compounding effect makes up the vast majority of your final retirement balance." }
+      ]
+    },
+    "fr": {
+      "title": "Projection d'Épargne Retraite",
+      "slug": "projection-epargne-retraite",
+      "metaDescription": "Estimez le capital disponible à votre départ en retraite. Comparez le solde nominal brut et la valeur réelle nette d'inflation.",
+      "intro": "Un calculateur de projection d'épargne retraite est un outil de planification financière conçu pour estimer la valeur de votre capital futur et préparer au mieux votre retraite. Organiser sa sécurité financière à long terme repose sur des versements réguliers et sur la capitalisation des rendements de vos investissements. En indiquant votre âge actuel, votre âge cible de départ à la retraite, votre épargne disponible et vos versements mensuels prévus, vous visualisez la progression de votre capital. Pour garantir des résultats réalistes, ce simulateur estime deux valeurs : le capital nominal brut et le capital réel ajusté à l'inflation (exprimé en pouvoir d'achat d'aujourd'hui). L'ajustement à l'inflation est fondamental pour s'assurer que vos objectifs financiers futurs restent viables face à la hausse générale des prix. Ce simulateur vous permet de comparer différents placements d'épargne (PER, Assurance-vie) et de définir une stratégie de préparation de votre retraite. Plus vous commencez tôt, plus l'effet des intérêts composés maximisera vos revenus futurs à la fin de votre carrière active.",
+      "methodology": "<p>Ce calculateur projette votre épargne sur toute la durée de votre vie active restante :</p><ul><li><strong>Capital Nominal Brut :</strong> Intérêts capitalisés mensuellement selon le taux annuel brut : <code>Solde = Solde * (1 + (Taux / 12 / 100)) + Versement mensuel</code>.</li><li><strong>Capital Réel (Ajusté Inflation) :</strong> Intérêts capitalisés mensuellement selon le taux réel de rendement net d'inflation : <code>Solde = Solde * (1 + ((Taux - Inflation) / 12 / 100)) + Versement mensuel</code>.</li></ul><p>Les versements totaux correspondent aux versements cumulés sur la durée. Les intérêts correspondent au capital brut obtenu moins le total des apports (dépôt initial + versements).</p>",
+      "faq": [
+        { "q": "Pourquoi faut-il ajuster son épargne à l'inflation ?", "a": "L'inflation réduit le pouvoir d'achat de la monnaie. 100 000 € dans 20 ans vaudront moins que 100 000 € aujourd'hui. L'ajustement à l'inflation permet de mesurer la capacité d'achat réelle de votre futur capital." },
+        { "q": "Qu'est-ce que le Plan d'Épargne Retraite (PER) ?", "a": "Le PER is un produit d'épargne à long terme permettant de se constituer un capital pour la retraite. Les versements volontaires effectués sur le PER sont déductibles de votre revenu imposable (dans la limite de plafonds légaux)." },
+        { "q": "Quand faut-il commencer à épargner pour sa retraite ?", "a": "Le plus tôt possible. En commençant jeune, vous profitez au maximum de l'effet exponentiel des intérêts composés : les intérêts générés les premières années produisent à leur tour des gains substantiels sur le long terme." }
+      ]
+    }
+  },
+  "relatedTo": ["savings-interest-calculator", "gross-to-net-calculator", "loan-repayment-calculator"],
+  "tags": ["retirement", "savings", "wealth"]
+}

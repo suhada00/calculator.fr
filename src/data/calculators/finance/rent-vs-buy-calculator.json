@@ -1,0 +1,123 @@
+{
+  "slug": "rent-vs-buy-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "rent-vs-buy",
+  "inputs": [
+    {
+      "key": "propertyPrice",
+      "type": "number",
+      "min": 10000,
+      "max": 3000000,
+      "step": 10000,
+      "default": 300000,
+      "translations": {
+        "en": { "label": "Property Purchase Price (€)" },
+        "fr": { "label": "Prix d'achat du bien (€)" }
+      }
+    },
+    {
+      "key": "monthlyRent",
+      "type": "number",
+      "min": 100,
+      "max": 10000,
+      "step": 50,
+      "default": 1200,
+      "translations": {
+        "en": { "label": "Monthly Rent (€)" },
+        "fr": { "label": "Loyer mensuel (€)" }
+      }
+    },
+    {
+      "key": "rentEscalation",
+      "type": "number",
+      "min": 0,
+      "max": 10,
+      "step": 0.1,
+      "default": 2,
+      "translations": {
+        "en": { "label": "Annual Rent Increase (%)" },
+        "fr": { "label": "Augmentation annuelle du loyer (%)" }
+      }
+    },
+    {
+      "key": "investmentReturn",
+      "type": "number",
+      "min": 0,
+      "max": 15,
+      "step": 0.1,
+      "default": 4,
+      "translations": {
+        "en": { "label": "Renter Investment Return (%)" },
+        "fr": { "label": "Rendement d'épargne alternatif (%)" }
+      }
+    },
+    {
+      "key": "holdPeriodYears",
+      "type": "number",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 10,
+      "translations": {
+        "en": { "label": "Comparison Period (years)" },
+        "fr": { "label": "Durée de la simulation (années)" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "totalRentPaid",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Rent Cost" },
+        "fr": { "label": "Coût total de la location" }
+      }
+    },
+    {
+      "key": "totalBuyCost",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Net Buying Cost" },
+        "fr": { "label": "Coût net de l'achat" }
+      }
+    },
+    {
+      "key": "opportunityCostDifference",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Difference (Rent - Buy)" },
+        "fr": { "label": "Écart financier (Location - Achat)" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Rent vs Buy Calculator",
+      "slug": "rent-vs-buy-calculator",
+      "metaDescription": "Compare the cost of renting vs buying a home. Find which housing option creates the highest long-term wealth for you.",
+      "intro": "A rent vs buy calculator is designed to help individuals evaluate the financial trade-offs between renting a home and buying property. Deciding whether to purchase real estate or continue renting is one of the most significant lifestyle and financial decisions you will face. Renting provides flexibility and shields you from maintenance costs, but it does not build equity. Buying, on the other hand, allows you to build long-term wealth through property appreciation, but it requires substantial upfront down payments, transactional fees (like notary costs), and ongoing maintenance liabilities. This simulator projects the total cumulative costs of renting and buying over a specified hold period (number of years). It assumes a standard annual rent inflation and compares it against purchase costs, maintenance, and asset growth over time. Use this comparison tool to find which housing option creates the highest long-term net worth for your specific situation. Knowing whether to rent or buy is the first step toward optimizing your housing expenses and achieving homeownership under the best fiscal conditions.",
+      "methodology": "<p>This comparison calculator projects financial metrics over a specified number of years:</p><ul><li><strong>Renting Costs:</strong> Sums monthly rent payments over the hold period, increasing rent annually by the specified rent escalation rate.</li><li><strong>Buying Costs:</strong> Sums the initial purchase price and annual maintenance costs (estimated at 1% of property value), then subtracts the final estimated appreciated value of the home at the end of the holding period (assuming 2% annual appreciation).</li></ul><p>The difference (total renting costs minus total buying costs) indicates which option is more cost-effective. A positive result indicates buying is cheaper overall, while a negative result favors renting.</p>",
+      "faq": [
+        { "q": "Is it always better to buy a home than to rent?", "a": "No. If you plan to live in an area for less than 3 to 5 years, renting is often cheaper due to the high upfront transactional costs of buying (notary fees, agency commission) which take time to amortize." },
+        { "q": "What is the opportunity cost of buying a home?", "a": "When you buy, you tie up a significant amount of cash in a down payment and transactional costs. Renters can invest this cash in other assets (like index funds) which might generate higher returns." },
+        { "q": "How does inflation affect the rent vs buy decision?", "a": "Inflation usually drives up rents over time, making renting more expensive. Buying a home with a fixed-rate mortgage locks in your housing payments, hedging against inflation." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur Louer vs Acheter",
+      "slug": "calculateur-louer-vs-acheter",
+      "metaDescription": "Comparez le coût réel d'un achat immobilier face à la location. Déterminez l'option financière la plus avantageuse pour vous.",
+      "intro": "Un calculateur louer vs acheter est conçu pour aider les ménages à évaluer les bénéfices financiers comparés de la location et de l'achat immobilier. Choisir d'acheter sa résidence principale ou de rester locataire est l'une des décisions financières les plus importantes de votre vie. La location offre une grande flexibilité et vous évite les frais de travaux, mais elle ne vous permet pas de vous constituer un patrimoine. L'achat immobilier permet de se constituer un capital à long terme grâce à l'appréciation du bien, mais il impose un apport initial conséquent, des frais de mutation (frais de notaire) et des coûts d'entretien récurrents. Ce simulateur projette les coûts cumulés de la location (loyer avec inflation annuelle) et de l'achat (prix de vente, travaux, revente avec plus-value) sur une période donnée. Cet outil vous aide à déterminer quelle option maximise votre patrimoine sur le long terme. Faire cette simulation vous permet de prendre une décision éclairée en confrontant les dépenses de loyer à fonds perdus avec les coûts d'acquisition immobilière.",
+      "methodology": "<p>Ce simulateur effectue une projection financière sur le nombre d'années sélectionné :</p><ul><li><strong>Coût de la location :</strong> Cumule les loyers versés en appliquant une revalorisation annuelle régulière (inflation des loyers).</li><li><strong>Coût de l'achat :</strong> Intègre le coût initial d'acquisition et les frais d'entretien annuels (évalués à 1% de la valeur du bien), puis déduit la valeur estimée de revente du bien revalorisée de 2% par an.</li></ul><p>L'écart calculé (coûts de location - coûts d'achat nets) indique quelle option est la plus rentable. Un résultat positif favorise l'achat, tandis qu'un résultat négatif favorise la location.</p>",
+      "faq": [
+        { "q": "Est-il toujours plus rentable d'acheter que de louer ?", "a": "Non. Si vous restez moins de 5 ans dans le logement, la location est souvent préférable car les frais de notaire et d'agence immobilière payés à l'achat ne sont pas encore amortis." },
+        { "q": "Qu'est-ce que le coût d'opportunité de l'achat ?", "a": "Acheter nécessite de bloquer de l'argent dans un apport personnel. En restant locataire, vous pouvez placer cet apport sur des produits financiers (actions, livrets) qui génèrent des rendements." },
+        { "q": "Quel est l'impact de l'inflation sur ce choix ?", "a": "L'inflation augmente les loyers chaque année via l'indice de référence des loyers (IRL). L'achat protège de cette hausse en fixant vos mensualités de remboursement de crédit." }
+      ]
+    }
+  },
+  "relatedTo": ["mortgage-calculator", "notary-fees-calculator", "loan-repayment-calculator"],
+  "tags": ["housing", "real-estate", "comparison"]
+}

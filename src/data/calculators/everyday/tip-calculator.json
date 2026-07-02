@@ -1,0 +1,107 @@
+{
+  "slug": "tip-calculator",
+  "category": "everyday",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "tip-calculator",
+  "inputs": [
+    {
+      "key": "billAmount",
+      "type": "number",
+      "min": 0,
+      "max": 100000,
+      "step": 0.01,
+      "default": 100,
+      "translations": {
+        "en": { "label": "Bill Amount" },
+        "fr": { "label": "Montant de l'addition" }
+      }
+    },
+    {
+      "key": "tipPercentage",
+      "type": "number",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15,
+      "translations": {
+        "en": { "label": "Tip Percentage (%)" },
+        "fr": { "label": "Pourcentage de pourboire (%)" }
+      }
+    },
+    {
+      "key": "numberOfPeople",
+      "type": "number",
+      "min": 1,
+      "max": 500,
+      "step": 1,
+      "default": 4,
+      "translations": {
+        "en": { "label": "Number of People" },
+        "fr": { "label": "Nombre de personnes" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "tipAmount",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Tip" },
+        "fr": { "label": "Pourboire total" }
+      }
+    },
+    {
+      "key": "totalAmount",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Bill (with Tip)" },
+        "fr": { "label": "Total avec pourboire" }
+      }
+    },
+    {
+      "key": "amountPerPerson",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Amount Per Person" },
+        "fr": { "label": "Part par personne" }
+      }
+    },
+    {
+      "key": "tipPerPerson",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Tip Per Person" },
+        "fr": { "label": "Pourboire par personne" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Tip Calculator",
+      "slug": "tip-calculator",
+      "metaDescription": "Calculate tips and split the bill easily. Perfect for dining out with groups to estimate individual payments and gratuity.",
+      "intro": "A tip calculator is an essential utility tool designed to help diners, travelers, and groups quickly determine gratuity amounts and split bills fairly. When dining out at restaurants, calculating the appropriate tip based on service quality can sometimes lead to confusing math, especially when splitting the cost among multiple friends or colleagues. By inputting the total bill amount, your desired tip percentage, and the number of people in your party, this simulator computes everything instantly. The tool outputs the total tip amount, the grand total including tip, the individual payment share per person, and the individual tip contribution. This ensures transparent billing, avoids awkward group calculations, and guarantees that servers receive the proper reward for their service. Using our digital calculator ensures your party settles bills quickly, avoiding payment confusion at restaurants, cafes, or bars. It is perfect for both casual diners and regular business travelers. Additionally, it helps you adhere to local tipping customs and maintain good dining etiquette when traveling abroad.",
+      "methodology": "<p>This tip calculator computes gratuity and split totals using standard arithmetic formulas:</p><ul><li><strong>Tip Amount:</strong> <code>Bill Amount * (Tip Percentage / 100)</code></li><li><strong>Total Bill:</strong> <code>Bill Amount + Tip Amount</code></li><li><strong>Amount Per Person:</strong> <code>Total Bill / Number of People</code></li><li><strong>Tip Per Person:</strong> <code>Tip Amount / Number of People</code></li></ul><p>Results are rounded to the nearest two decimal places representing cents/centimes.</p>",
+      "faq": [
+        { "q": "What is the standard tipping rate in France?", "a": "In France, a 15% service charge (service compris) is automatically included in restaurant bills by law. However, leaving an extra 5% to 10% cash (pourboire) is common for good service." },
+        { "q": "Does this calculator support decimals for bill splitting?", "a": "Yes, you can enter decimal values for the bill amount, and the per-person splits are rounded to two decimal places for absolute clarity." },
+        { "q": "Is tipping mandatory in Europe?", "a": "Unlike in the US, tipping is rarely mandatory in Europe since waitstaff receive standard monthly salaries, but leaving small change or rounding up is highly appreciated." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur de Pourboire",
+      "slug": "calculateur-de-pourboire",
+      "metaDescription": "Calculez facilement le pourboire et divisez la note entre amis. Idéal pour partager les frais au restaurant.",
+      "intro": "Un calculateur de pourboire est un outil d'usage quotidien extrêmement pratique pour évaluer le montant d'une gratification et diviser équitablement une note de restaurant entre plusieurs convives. Partager l'addition à la fin d'un repas de groupe peut parfois mener à des calculs complexes et fastidieux. En saisissant le montant total de la facture, le pourcentage de pourboire souhaité et le nombre de convives, le simulateur effectue le partage immédiatement. Il affiche le pourboire total, le coût total cumulé, la part individuelle de la note et la contribution individuelle au pourboire. Cela permet de régler la facture en toute transparence, d'éviter les discussions gênantes lors de la division des frais, et de valoriser le travail du personnel en salle de manière équitable et transparente sans erreur. Cet outil simplifiera la vie de tous les membres de la tablée à coup sûr. C'est l'auxiliaire de poche idéal pour vos déjeuners professionnels ou vos dîners conviviaux.",
+      "methodology": "<p>Ce calculateur de pourboire applique des équations de partage de frais arithmétiques :</p><ul><li><strong>Montant du pourboire :</strong> <code>Addition * (Pourcentage / 100)</code></li><li><strong>Total Facture :</strong> <code>Addition + Montant pourboire</code></li><li><strong>Part par personne :</strong> <code>Total Facture / Nombre de convives</code></li><li><strong>Pourboire par personne :</strong> <code>Montant pourboire / Nombre de convives</code></li></ul><p>Les totaux sont arrondis à deux décimales après la virgule.</p>",
+      "faq": [
+        { "q": "Le service est-il inclus dans les restaurants en France ?", "a": "Oui, en France, le service est obligatoirement compris dans le prix affiché (15 % du montant). Le pourboire (pourboire de courtoisie) reste facultatif et récompense un excellent service." },
+        { "q": "Combien donner de pourboire en Europe ?", "a": "Il est coutumier de laisser de 5 % à 10 % de la note totale si le service a été satisfaisant, ou simplement d'arrondir à l'euro supérieur pour les consommations courantes." },
+        { "q": "Puis-je diviser la note entre un grand nombre de personnes ?", "a": "Oui, l'outil prend en charge des divisions complexes pour des tablées allant jusqu'à 500 personnes." }
+      ]
+    }
+  },
+  "relatedTo": ["age-calculator", "discount-calculator"],
+  "tags": ["everyday", "tip", "restaurant", "finance"]
+}

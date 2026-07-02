@@ -1,0 +1,126 @@
+---
+import { useTranslations, getLocalizedPath } from '../../lib/i18n';
+
+interface Props {
+  locale: string;
+  alternateUrls?: Record<string, string>;
+}
+
+const { locale, alternateUrls = {} } = Astro.props;
+const t = useTranslations(locale);
+
+const currentLang = locale;
+const alternateLang = locale === 'en' ? 'fr' : 'en';
+const alternatePath = alternateUrls[alternateLang] || (locale === 'en' ? '/fr/' : '/en/');
+
+// Paths for menus
+const homePath = `/${locale}/`;
+const calculatorsPath = `/${locale}/${locale === 'fr' ? 'calculateurs' : 'calculators'}/`;
+const aboutPath = `/${locale}/about/`;
+const blogPath = `/${locale}/blog/`;
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-border bg-surface/80 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href={homePath} class="flex items-center gap-2 group">
+      <div class="h-9 w-9 bg-primary-500 rounded-md flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:bg-primary-600 transition-colors">
+        €
+      </div>
+      <span class="font-extrabold text-xl tracking-tight text-text-heading group-hover:text-primary-500 transition-colors">
+        {t('brandName')}
+      </span>
+    </a>
+
+    <!-- Navigation (Desktop) -->
+    <nav class="hidden md:flex items-center gap-6">
+      <a href={calculatorsPath} class="text-sm font-semibold text-text-base hover:text-primary-500 transition-colors">
+        {t('calculators')}
+      </a>
+      <a href={blogPath} class="text-sm font-semibold text-text-base hover:text-primary-500 transition-colors">
+        Blog
+      </a>
+      <a href={aboutPath} class="text-sm font-semibold text-text-base hover:text-primary-500 transition-colors">
+        {t('about')}
+      </a>
+    </nav>
+
+    <!-- Controls (Theme, Language, Mobile Menu Toggle) -->
+    <div class="flex items-center gap-4">
+      <!-- Dark Mode Toggle Button -->
+      <button
+        id="theme-toggle"
+        class="h-10 w-10 flex items-center justify-center rounded-md border border-border bg-surface-alt hover:bg-neutral-100 dark:hover:bg-neutral-100/10 transition-colors text-text-base cursor-pointer"
+        aria-label={t('themeToggle')}
+      >
+        <!-- Sun icon -->
+        <svg class="hidden dark:block w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+        </svg>
+        <!-- Moon icon -->
+        <svg class="block dark:hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+
+      <!-- Language Switcher -->
+      <a
+        href={alternatePath}
+        class="text-sm font-semibold h-10 px-3 flex items-center justify-center rounded-md border border-border bg-surface-alt hover:bg-neutral-100 dark:hover:bg-neutral-100/10 transition-colors text-text-heading"
+        title={`Switch to ${alternateLang === 'en' ? 'English' : 'Français'}`}
+      >
+        <span class="uppercase">{alternateLang}</span>
+      </a>
+
+      <!-- Hamburger Menu (Mobile) -->
+      <button
+        id="mobile-menu-toggle"
+        class="md:hidden h-10 w-10 flex items-center justify-center rounded-md border border-border bg-surface-alt text-text-base cursor-pointer"
+        aria-label="Toggle Menu"
+      >
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-surface px-4 pt-4 pb-6 space-y-3">
+    <a href={calculatorsPath} class="block px-3 py-2 rounded-md text-body font-semibold text-text-base hover:bg-surface-alt">
+      {t('calculators')}
+    </a>
+    <a href={blogPath} class="block px-3 py-2 rounded-md text-body font-semibold text-text-base hover:bg-surface-alt">
+      Blog
+    </a>
+    <a href={aboutPath} class="block px-3 py-2 rounded-md text-body font-semibold text-text-base hover:bg-surface-alt">
+      {t('about')}
+    </a>
+  </div>
+</header>
+
+<script>
+  // Theme management script
+  const themeToggle = document.getElementById('theme-toggle');
+  const getTheme = () => localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  
+  const setTheme = (theme: string) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  };
+
+  // Initialize
+  setTheme(getTheme());
+
+  themeToggle?.addEventListener('click', () => {
+    const nextTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+  });
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

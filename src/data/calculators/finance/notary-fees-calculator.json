@@ -1,0 +1,80 @@
+{
+  "slug": "notary-fees-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "notary-fees",
+  "inputs": [
+    {
+      "key": "propertyValue",
+      "type": "number",
+      "min": 5000,
+      "max": 5000000,
+      "step": 5000,
+      "default": 200000,
+      "translations": {
+        "en": { "label": "Property Value (€)" },
+        "fr": { "label": "Prix d'achat du bien (€)" }
+      }
+    },
+    {
+      "key": "propertyType",
+      "type": "select",
+      "default": "old",
+      "options": [
+        { "value": "old", "translations": { "en": "Older Property (Ancien)", "fr": "Logement Ancien" } },
+        { "value": "new", "translations": { "en": "New Construction (Neuf)", "fr": "Logement Neuf (VEFA)" } }
+      ],
+      "translations": {
+        "en": { "label": "Property Status" },
+        "fr": { "label": "Type de bien" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "notaryFees",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Estimated Notary Fees" },
+        "fr": { "label": "Frais de notaire estimés" }
+      }
+    },
+    {
+      "key": "totalCost",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Cost" },
+        "fr": { "label": "Coût d'acquisition global" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Notary Fees Calculator",
+      "slug": "notary-fees-calculator",
+      "metaDescription": "Estimate property notary fees in France for old and new properties. Calculate real estate tax and transfer fees instantly.",
+      "intro": "A notary fees calculator helps home buyers in France estimate the acquisition costs associated with purchasing a property. In France, purchasing real estate requires the involvement of a notary to legally transfer property rights, and the buyer is responsible for paying these fees. The term 'notary fees' (frais de notaire) is actually a misnomer, as only a small fraction of this money goes to the notary as compensation. Around 80% of the total amount consists of regional transfer taxes and registration duties collected on behalf of the French government. The fees differ significantly based on the state of the property. For older properties (built more than 5 years ago), notary fees range from 7% to 8.5% of the purchase price. For newly constructed properties, the fees are heavily reduced to around 2% to 3% because the transaction is subject to value-added tax (VAT) instead of standard transfer duties. Use this tool to plan your purchasing budget.",
+      "methodology": "<p>This calculator estimates acquisition costs (frais d'acquisition) in France using average statutory tax rates:</p><ul><li><strong>Old Properties (Ancien):</strong> Applies a flat average rate of 7.5% which covers departmental duties, municipal taxes, notary emoluments, and formal expenses.</li><li><strong>New Properties (Neuf):</strong> Applies a flat average rate of 2.5% representing reduced registry fees and taxes on new builds.</li></ul><p>Formula used: <code>Notary Fees = Property Value * Rate</code>. The total cost is calculated by adding the notary fees to the property purchase price. Note that these are standard estimates; actual fees may vary slightly based on state-specific taxes and notary expenses.</p>",
+      "faq": [
+        { "q": "Why are notary fees so high in France?", "a": "The majority of the fees (about 80%) are actually taxes (droits de mutation) levied by the state and local departments, not the notary's salary." },
+        { "q": "What is considered a 'new' property in France?", "a": "A new property is one that has been built within the last 5 years and has never been sold to an end-user, or is purchased off-plan (VEFA)." },
+        { "q": "Can notary fees be negotiated in France?", "a": "The tax rates are fixed by law and cannot be negotiated. However, since 2016, notaries may grant a small discount on their actual compensation for properties over a certain value." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur de Frais de Notaire",
+      "slug": "calculateur-frais-de-notaire",
+      "metaDescription": "Estimez les frais de notaire pour votre projet d'achat immobilier en France. Simulation gratuite pour logements neufs et anciens.",
+      "intro": "Un calculateur de frais de notaire aide les acquéreurs immobiliers en France à estimer les frais d'acquisition liés à l'achat d'un bien. En France, l'achat d'un bien immobilier nécessite obligatoirement l'intervention d'un notaire pour rédiger l'acte authentique et enregistrer la vente. Les frais de notaire sont payés par l'acquéreur. Contrairement aux idées reçues, la majorité de ces frais ne correspond pas à la rémunération du notaire. En effet, environ 80% de cette somme correspond à des taxes d'enregistrement et des droits de mutation perçus par le notaire pour le compte de l'État et des collectivités locales. Le montant varie considérablement selon la nature du bien. Pour un bien ancien, les frais de notaire s'élèvent entre 7% et 8,5% du prix d'achat. Pour un bien neuf, ces frais sont réduits entre 2% et 3% du prix d'achat, bénéficiant ainsi de droits réduits. Ce simulateur vous permet de planifier au mieux votre capacité d'achat.",
+      "methodology": "<p>Ce simulateur estime les frais d'acquisition en France en appliquant les taux officiels moyens :</p><ul><li><strong>Bien Ancien :</strong> Applique un taux moyen de 7,5% du prix d'achat, correspondant aux droits de mutation de droit commun et émoluments.</li><li><strong>Bien Neuf :</strong> Applique un taux moyen réduit de 2,5% du prix de vente hors taxes, correspondant aux frais administratifs réduits pour les logements neufs.</li></ul><p>Formule appliquée : <code>Frais de notaire = Prix de vente * Taux</code>. Le coût total de l'acquisition intègre le prix du bien augmenté des frais annexes.</p>",
+      "faq": [
+        { "q": "Qui paie les frais de notaire lors d'une vente ?", "a": "Par défaut, c'est l'acquéreur du bien immobilier qui prend à sa charge l'intégralité des frais de notaire au moment de la signature de l'acte de vente." },
+        { "q": "Pourquoi les frais sont-ils réduits dans le neuf ?", "a": "L'État encourage la construction neuve en réduisant les taxes d'enregistrement sur les transactions soumises à la TVA (logements neufs)." },
+        { "q": "Qu'appelle-t-on les débours dans les frais de notaire ?", "a": "Ce sont les frais avancés par le notaire pour le compte du client pour obtenir les documents administratifs indispensables à la transaction (cadastre, état hypothécaire)." }
+      ]
+    }
+  },
+  "relatedTo": ["mortgage-calculator", "loan-repayment", "rent-vs-buy"],
+  "tags": ["notary", "real-estate", "taxes"]
+}

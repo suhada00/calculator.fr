@@ -1,0 +1,110 @@
+---
+import { useTranslations } from '../../lib/i18n';
+
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const currentYear = new Date().getFullYear();
+
+// Localized links
+const homePath = `/${locale}/`;
+const calculatorsPath = `/${locale}/${locale === 'fr' ? 'calculateurs' : 'calculators'}/`;
+const aboutPath = `/${locale}/about/`;
+const privacyPath = `/${locale}/privacy-policy/`;
+const termsPath = `/${locale}/terms/`;
+const contactPath = `/${locale}/contact/`;
+const blogPath = `/${locale}/blog/`;
+---
+
+<footer class="bg-surface-alt border-t border-border mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Brand Info -->
+      <div class="space-y-4">
+        <a href={homePath} class="flex items-center gap-2 group">
+          <div class="h-8 w-8 bg-primary-500 rounded flex items-center justify-center text-white font-bold text-base">
+            €
+          </div>
+          <span class="font-extrabold text-lg text-text-heading">
+            {t('brandName')}
+          </span>
+        </a>
+        <p class="text-xs text-text-muted max-w-sm">
+          {t('homeSubtitle')}
+        </p>
+      </div>
+
+      <!-- Links Column 1: Calculators -->
+      <div>
+        <h3 class="text-xs font-bold text-text-heading uppercase tracking-wider mb-4">
+          {t('calculators')}
+        </h3>
+        <ul class="space-y-2.5">
+          <li>
+            <a href={calculatorsPath} class="text-sm text-text-base hover:text-primary-500 transition-colors">
+              {locale === 'fr' ? 'Tous les calculateurs' : 'All Calculators'}
+            </a>
+          </li>
+          <li>
+            <a href={blogPath} class="text-sm text-text-base hover:text-primary-500 transition-colors">
+              Blog
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Links Column 2: Legal & About -->
+      <div>
+        <h3 class="text-xs font-bold text-text-heading uppercase tracking-wider mb-4">
+          {locale === 'fr' ? 'Informations' : 'Company'}
+        </h3>
+        <ul class="space-y-2.5">
+          <li>
+            <a href={aboutPath} class="text-sm text-text-base hover:text-primary-500 transition-colors">
+              {t('about')}
+            </a>
+          </li>
+          <li>
+            <a href={contactPath} class="text-sm text-text-base hover:text-primary-500 transition-colors">
+              {t('contact')}
+            </a>
+          </li>
+          <li>
+            <a href={privacyPath} class="text-sm text-text-base hover:text-primary-500 transition-colors">
+              {t('privacyPolicy')}
+            </a>
+          </li>
+          <li>
+            <a href={termsPath} class="text-sm text-text-base hover:text-primary-500 transition-colors">
+              {t('terms')}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider & Bottom Info -->
+    <div class="border-t border-border mt-8 pt-8 space-y-4">
+      {t('disclaimer') && (
+        <p class="text-[11px] text-text-muted/75 leading-relaxed max-w-none text-justify italic">
+          {t('disclaimer')}
+        </p>
+      )}
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+        <p class="text-xs text-text-muted">
+          &copy; {currentYear} {t('brandName')}. {t('copyright')}
+        </p>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-text-muted">Locale:</span>
+          <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-semibold bg-surface border border-border text-text-heading">
+            {t('langName')} ({locale})
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

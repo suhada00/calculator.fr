@@ -1,0 +1,91 @@
+{
+  "slug": "weight-converter",
+  "category": "conversion",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "weight-converter",
+  "inputs": [
+    {
+      "key": "value",
+      "type": "number",
+      "min": 0,
+      "max": 10000000,
+      "step": 0.01,
+      "default": 10,
+      "translations": {
+        "en": { "label": "Weight Value" },
+        "fr": { "label": "Masse à convertir" }
+      }
+    },
+    {
+      "key": "fromUnit",
+      "type": "select",
+      "default": "kg",
+      "options": [
+        { "value": "kg", "translations": { "en": "Kilograms (kg)", "fr": "Kilogrammes (kg)" } },
+        { "value": "g", "translations": { "en": "Grams (g)", "fr": "Grammes (g)" } },
+        { "value": "mg", "translations": { "en": "Milligrams (mg)", "fr": "Milligrammes (mg)" } },
+        { "value": "lb", "translations": { "en": "Pounds (lb)", "fr": "Livres (lb)" } },
+        { "value": "oz", "translations": { "en": "Ounces (oz)", "fr": "Onces (oz)" } }
+      ],
+      "translations": {
+        "en": { "label": "From Unit" },
+        "fr": { "label": "De l'unité" }
+      }
+    },
+    {
+      "key": "toUnit",
+      "type": "select",
+      "default": "lb",
+      "options": [
+        { "value": "kg", "translations": { "en": "Kilograms (kg)", "fr": "Kilogrammes (kg)" } },
+        { "value": "g", "translations": { "en": "Grams (g)", "fr": "Grammes (g)" } },
+        { "value": "mg", "translations": { "en": "Milligrams (mg)", "fr": "Milligrammes (mg)" } },
+        { "value": "lb", "translations": { "en": "Pounds (lb)", "fr": "Livres (lb)" } },
+        { "value": "oz", "translations": { "en": "Ounces (oz)", "fr": "Onces (oz)" } }
+      ],
+      "translations": {
+        "en": { "label": "To Unit" },
+        "fr": { "label": "Vers l'unité" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "convertedValue",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Converted Weight" },
+        "fr": { "label": "Masse convertie" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Weight Converter",
+      "slug": "weight-converter",
+      "metaDescription": "Convert weight and mass units instantly. Translate between kilograms, grams, pounds, ounces, and milligrams with high precision.",
+      "intro": "A weight converter is a digital utility designed to translate mass measurements between different unit systems. Similar to length, the standard measurement of weight differs across regions. The Metric system (utilizing grams and kilograms) is the official standard in most countries, while the Imperial system (utilizing ounces and pounds) remains standard in the United States and is commonly used in UK commerce. By entering the weight value and selecting the starting and target units, you can instantly calculate the converted amount. This tool supports various unit scales, from small micro-measurements like milligrams up to larger amounts like kilograms and pounds. Relying on highly precise mathematical conversion factors, the simulator ensures results are accurate, which is critical for shipping calculations, cooking recipes, science projects, and fitness tracking. By using this digital tool, you bypass the need for manual calculations, ensuring error-free results that save you valuable time during busy tasks. Whether you're tracking gym progress or converting kitchen recipe ingredients, this utility provides immediate calculations.",
+      "methodology": "<p>This weight converter maps all inputs to a base unit of kilograms (kg), then scales to the target unit:</p><ul><li><strong>Metric to Base:</strong> g (0.001kg), mg (0.000001kg)</li><li><strong>Imperial to Base:</strong> lb (0.45359237kg), oz (0.028349523kg)</li></ul><p>Formula used: <code>Target = (Value * Base Rate From) / Base Rate To</code>. Results are rounded to 4 decimal places of accuracy.</p>",
+      "faq": [
+        { "q": "How many grams are in a pound?", "a": "There are approximately 453.59 grams in one pound. One kilogram is equal to 2.2046 pounds." },
+        { "q": "What is the difference between mass and weight?", "a": "Mass measures the amount of matter in an object, while weight measures the force of gravity acting on that mass. In everyday usage, they are treated as identical." },
+        { "q": "How do I convert ounces to grams?", "a": "To convert ounces (oz) to grams (g), multiply the ounce value by approximately 28.35. There are 16 ounces in one pound." }
+      ]
+    },
+    "fr": {
+      "title": "Convertisseur de Poids",
+      "slug": "convertisseur-de-poids",
+      "metaDescription": "Convertissez des masses et poids instantanément. Traduisiez les kilogrammes, grammes, livres et onces avec précision.",
+      "intro": "Un convertisseur de poids (ou de masse) est un outil d'aide conçu pour transcrire des mesures de masse d'un système d'unités à un autre. La cohabitation de plusieurs standards mondiaux de mesure exige fréquemment de jongler entre les kilogrammes (unité officielle du système international) et les livres ou onces du système impérial anglo-saxon. En indiquant la valeur d'origine, l'unité source et l'unité cible, vous effectuez une conversion immédiate. Les calculs reposent sur des coefficients de conversion normalisés pour vous assurer un résultat rigoureux. Cet outil s'avère indispensable pour traduire des recettes de cuisine internationales, estimer les frais de douane ou de transport de colis, ou suivre des indicateurs de fitness dans différents contextes d'entraînement. C'est l'assistant idéal pour éviter de fastidieuses opérations mathématiques manuelles au quotidien et obtenir des réponses fiables en quelques secondes seulement sans aucun effort. Grâce à cette interface ergonomique et intuitive, vous réalisez toutes vos conversions de poids de manière sereine et précise.",
+      "methodology": "<p>Ce convertisseur de poids normalise la valeur saisie en la convertissant en kilogrammes (kg), puis applique le coefficient de l'unité cible :</p><ul><li><strong>Unités Métriques :</strong> g (0,001 kg), mg (0,000001 kg)</li><li><strong>Unités Impériales :</strong> lb (0,45359237 kg), oz (0,028349523 kg)</li></ul><p>Relation mathématique : <code>Résultat = (Valeur * Coefficient Source) / Coefficient Cible</code>. Le résultat final est arrondi à 4 décimales de précision.</p>",
+      "faq": [
+        { "q": "Combien de grammes compte une livre (pound) ?", "a": "Une livre anglo-saxonne (pound) correspond exactement à 453,592 grammes. Un kilogramme vaut environ 2,2046 livres." },
+        { "q": "Quelle est la différence entre poids et masse ?", "a": "Physiquement, la masse mesure la quantité de matière, tandis que le poids est la force gravitationnelle exercée sur cette masse. Dans le langage courant, les deux termes sont assimilés." },
+        { "q": "Combien d'onces y a-t-il dans une livre ?", "a": "Une livre (lb) contient exactement 16 onces (oz). L'once vaut environ 28,35 grammes." }
+      ]
+    }
+  },
+  "relatedTo": ["length-converter", "temperature-converter"],
+  "tags": ["conversion", "weight", "mass", "imperial"]
+}

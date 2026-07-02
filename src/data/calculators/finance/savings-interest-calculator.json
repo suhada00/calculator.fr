@@ -1,0 +1,111 @@
+{
+  "slug": "savings-interest-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "savings-interest",
+  "inputs": [
+    {
+      "key": "initialDeposit",
+      "type": "number",
+      "min": 0,
+      "max": 1000000,
+      "step": 500,
+      "default": 10000,
+      "translations": {
+        "en": { "label": "Initial Starting Deposit (€)" },
+        "fr": { "label": "Dépôt initial (€)" }
+      }
+    },
+    {
+      "key": "monthlyContribution",
+      "type": "number",
+      "min": 0,
+      "max": 50000,
+      "step": 50,
+      "default": 200,
+      "translations": {
+        "en": { "label": "Monthly Contribution (€)" },
+        "fr": { "label": "Versement mensuel (€)" }
+      }
+    },
+    {
+      "key": "annualInterestRate",
+      "type": "number",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "default": 3,
+      "translations": {
+        "en": { "label": "Annual Interest Rate (%)" },
+        "fr": { "label": "Taux d'intérêt annuel (%)" }
+      }
+    },
+    {
+      "key": "years",
+      "type": "number",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 5,
+      "translations": {
+        "en": { "label": "Investment Period (years)" },
+        "fr": { "label": "Durée de placement (années)" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "finalBalance",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Future Savings Balance" },
+        "fr": { "label": "Capital final acquis" }
+      }
+    },
+    {
+      "key": "totalContributions",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Deposits Made" },
+        "fr": { "label": "Total de vos versements" }
+      }
+    },
+    {
+      "key": "totalInterestEarned",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Interest Earned" },
+        "fr": { "label": "Total des intérêts capitalisés" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Savings Interest Calculator",
+      "slug": "savings-interest-calculator",
+      "metaDescription": "Calculate future savings value and compound interest. Project portfolio growth with monthly deposits and annual interest rates.",
+      "intro": "A savings interest calculator is a powerful wealth-building tool that helps individuals project the future growth of their savings accounts or investment portfolios. Building financial security requires consistent saving habits and an understanding of how compound interest works to accelerate wealth. By inputting your initial starting deposit, your planned monthly contributions, and the annual interest rate, you can visualize how your money accumulates over a period of years. This tool illustrates the power of compounding, which occurs when you earn interest on your interest, creating an exponential growth curve. In addition to displaying your final account balance, the calculator highlights the total contributions you have made out of pocket and the total interest earned from the financial institution. Having these values can motivate you to stick to a saving schedule and compare returns on different accounts, such as high-yield savings accounts or mutual funds. By visualizing this growth, you can make better long-term budgeting decisions and allocate your spare cash to the highest yielding assets.",
+      "methodology": "<p>This savings calculator calculates growth using monthly compounding compound interest:</p><p>For each month over the specified term, the balance is updated as:</p><p class='font-mono bg-surface-alt p-3 rounded border border-border my-2'>Balance = Balance * (1 + r) + C</p><p>Where <strong>r</strong> is the monthly interest rate (annual interest rate / 12 / 100), and <strong>C</strong> is the monthly contribution. The total out-of-pocket contributions are computed as <code>C * term in months</code>. The total interest earned is the final balance minus the sum of the initial deposit and total contributions.</p>",
+      "faq": [
+        { "q": "What is compound interest?", "a": "Compound interest is the interest calculated on the initial principal and also on the accumulated interest of previous periods. It allows your savings to grow faster over time compared to simple interest." },
+        { "q": "How does inflation impact my savings?", "a": "Inflation reduces the purchasing power of your money over time. If your savings account interest rate is lower than the inflation rate, the real value of your money is decreasing even though the nominal balance is growing." },
+        { "q": "What savings accounts are best for compounding?", "a": "Accounts that offer high annual percentage yields (APY), such as high-yield savings accounts (HYSAs), certificates of deposit (CDs), or long-term investment portfolios, are typically best for maximizing compound interest." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur d'Intérêts d'Épargne",
+      "slug": "calculateur-interets-depargne",
+      "metaDescription": "Calculez le rendement de vos placements et l'effet des intérêts composés. Simulez l'évolution de vos livrets et investissements.",
+      "intro": "Un calculateur d'intérêts d'épargne est un outil d'aide à la gestion financière conçu pour projeter la croissance future de vos économies ou portefeuilles de placement. Construire sa sécurité financière repose sur une épargne régulière et sur la compréhension de l'effet multiplicateur des intérêts composés. En indiquant votre dépôt initial, vos versements mensuels prévus et le taux de rendement annuel, vous visualisez l'accumulation de votre capital au fil des ans. Cet outil démontre la puissance de la capitalisation, où les intérêts générés produisent à leur tour de nouveaux intérêts, créant ainsi une croissance exponentielle. En plus d'afficher le solde final, le simulateur distingue vos versements personnels des gains issus des intérêts versés par l'établissement. Ces projections vous aident à fixer des objectifs d'épargne clairs et à comparer les rendements de livrets (Livret A, LDDS, PEL) ou d'autres placements. Grâce à ces indicateurs de performance à long terme, vous planifiez vos investissements de façon rationnelle pour maximiser la valorisation de votre patrimoine.",
+      "methodology": "<p>Ce calculateur d'épargne simule la capitalisation des intérêts avec une périodicité mensuelle :</p><p>Chaque mois, le solde progresse selon la relation :</p><p class='font-mono bg-surface-alt p-3 rounded border border-border my-2'>Solde = Solde * (1 + r) + V</p><p>Où <strong>r</strong> correspond au taux mensuel (taux annuel / 12 / 100) et <strong>V</strong> représente le versement mensuel. Les versements totaux correspondent à <code>V * nombre de mois</code>. Les intérêts acquis correspondent à la différence entre le solde de fin de période et le total des dépôts (dépôt de départ + versements).</p>",
+      "faq": [
+        { "q": "Quelle est la différence entre intérêts simples et composés ?", "a": "Les intérêts simples sont calculés uniquement sur le capital de départ. Les intérêts composés sont réinvestis pour produire de nouveaux intérêts d'année en année, augmentant le rendement global." },
+        { "q": "Qu'est-ce que le Livret A en France ?", "a": "Le Livret A est un compte d'épargne réglementé français. Ses intérêts sont totalement exonérés d'impôt et de prélèvements sociaux. Son taux est fixé par l'État (de 1,50 % net depuis février 2026, avec une hausse prévue au 1er août 2026 autour de 1,70 % - 1,80 %)." },
+        { "q": "Quelle est la fiscalité de l'épargne en France ?", "a": "Les revenus des placements financiers (hors livrets réglementés) sont soumis par défaut au Prélèvement Forfaitaire Unique (PFU ou Flat Tax) au taux global de 30% (12,8% d'impôt et 17,2% de prélèvements sociaux)." }
+      ]
+    }
+  },
+  "relatedTo": ["loan-repayment-calculator", "retirement-projection-calculator", "gross-to-net-calculator"],
+  "tags": ["savings", "wealth", "interest"]
+}

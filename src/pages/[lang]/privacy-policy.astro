@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import { useTranslations } from '../../lib/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'fr' } }
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang || 'en';
+const t = useTranslations(locale);
+
+const alternateUrls = {
+  en: `/en/privacy-policy/`,
+  fr: `/fr/privacy-policy/`
+};
+
+const breadcrumbs = [
+  { name: locale === 'fr' ? 'Accueil' : 'Home', item: `/${locale}/` },
+  { name: t('privacyPolicy'), item: Astro.url.pathname }
+];
+---
+
+<BaseLayout
+  title={`${t('privacyPolicy')} — ${t('brandName')}`}
+  description={locale === 'fr' 
+    ? 'Consultez notre politique de confidentialité et de gestion des cookies.' 
+    : 'Review our privacy policy and cookie management guidelines.'
+  }
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-display font-extrabold text-text-heading mb-6 tracking-tight">
+      {t('privacyPolicy')}
+    </h1>
+
+    <Card class="p-6 md:p-8 space-y-6 text-body text-text-base leading-relaxed">
+      <section class="space-y-3">
+        <h2 class="text-h2 font-bold text-text-heading">1. Introduction</h2>
+        <p>
+          {locale === 'fr'
+            ? 'Nous prenons la confidentialité de vos données très au sérieux. Cette politique de confidentialité explique comment notre plateforme collecte et traite les informations des utilisateurs lors de leur navigation.'
+            : 'We take your privacy seriously. This privacy policy explains how our platform collects and processes user information during your visit.'
+          }
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-h2 font-bold text-text-heading">2. No Personal Data Collection</h2>
+        <p>
+          {locale === 'fr'
+            ? 'En tant que plateforme d\'utilitaires statiques, nous ne recueillons aucune donnée personnelle vous identifiant de manière directe (comme vos noms, e-mails, ou coordonnées de calcul). Les calculs s\'exécutent exclusivement sur votre navigateur.'
+            : 'As a static utility platform, we do not collect any personal data that directly identifies you (such as your name, email, or input calculation parameters). All calculations run entirely client-side on your browser.'
+          }
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-h2 font-bold text-text-heading">3. Google AdSense & Cookies</h2>
+        <p>
+          {locale === 'fr'
+            ? 'Nous affichons des encarts publicitaires gérés par Google AdSense. Google utilise des cookies (fichiers texte placés sur votre ordinateur) pour diffuser des annonces basées sur les visites antérieures des internautes sur notre site ou sur d\'autres sites.'
+            : 'We display advertisements managed by Google AdSense. Google uses cookies (small text files stored on your device) to serve ads based on your prior visits to our website or other sites.'
+          }
+        </p>
+        <p>
+          {locale === 'fr'
+            ? 'L\'utilisation du cookie DoubleClick permet à Google et à ses partenaires de diffuser des annonces adaptées à votre navigation. Vous pouvez choisir de désactiver la publicité personnalisée dans les paramètres de votre compte Google.'
+            : 'The use of the DoubleClick cookie enables Google and its partners to serve targeted ads based on your browsing history. You may opt out of personalized advertising by visiting Google Ad Settings.'
+          }
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-h2 font-bold text-text-heading">4. Cookies de Tiers (Analytics)</h2>
+        <p>
+          {locale === 'fr'
+            ? 'Nous pouvons utiliser des outils de mesure d\'audience respectueux de la vie privée pour comprendre le trafic de notre site. Ces statistiques anonymes ne contiennent aucun identifiant personnel.'
+            : 'We may use privacy-respecting analytics tools to understand site traffic. These anonymous statistics contain no personal identifier.'
+          }
+        </p>
+      </section>
+    </Card>
+  </div>
+</BaseLayout>

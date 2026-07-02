@@ -1,0 +1,98 @@
+---
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const translations = {
+  en: {
+    message: "We use cookies to analyze site traffic, personalize content, and serve relevant ads. By clicking 'Accept All', you agree to our use of cookies.",
+    accept: "Accept All",
+    decline: "Decline",
+    learnMore: "Learn More"
+  },
+  fr: {
+    message: "Nous utilisons des cookies pour analyser le trafic du site, personnaliser le contenu et diffuser des publicités pertinentes. En cliquant sur « Tout accepter », vous acceptez l'utilisation de ces cookies.",
+    accept: "Tout accepter",
+    decline: "Refuser",
+    learnMore: "En savoir plus"
+  }
+};
+
+const trans = translations[locale as 'en' | 'fr'] || translations.en;
+const privacyPath = `/${locale}/privacy-policy/`;
+---
+
+<div
+  id="cookie-consent-banner"
+  class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-50 bg-surface/90 backdrop-blur-md border border-border rounded-xl shadow-xl p-5 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 ease-out"
+>
+  <div class="flex flex-col gap-4">
+    <div class="flex items-start gap-3">
+      <div class="h-8 w-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 flex-shrink-0 mt-0.5 text-lg">
+        🍪
+      </div>
+      <div class="flex-grow">
+        <h4 class="text-sm font-bold text-text-heading mb-1">
+          {locale === 'fr' ? 'Gestion des cookies' : 'Cookie Preferences'}
+        </h4>
+        <p class="text-xs text-text-muted leading-relaxed">
+          {trans.message}
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center justify-between gap-3 border-t border-border/50 pt-3">
+      <a href={privacyPath} class="text-xs font-semibold text-text-muted hover:text-primary-500 transition-colors">
+        {trans.learnMore}
+      </a>
+      <div class="flex gap-2">
+        <button
+          id="cookie-decline-btn"
+          class="px-3.5 py-1.5 rounded-md text-xs font-semibold text-text-base border border-border hover:bg-neutral-100 dark:hover:bg-neutral-100/10 transition-colors cursor-pointer"
+        >
+          {trans.decline}
+        </button>
+        <button
+          id="cookie-accept-btn"
+          class="px-3.5 py-1.5 rounded-md text-xs font-semibold text-white bg-primary-500 hover:bg-primary-600 transition-colors shadow-sm cursor-pointer"
+        >
+          {trans.accept}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-consent-banner');
+    const acceptBtn = document.getElementById('cookie-accept-btn');
+    const declineBtn = document.getElementById('cookie-decline-btn');
+
+    if (!banner || !acceptBtn || !declineBtn) return;
+
+    // Check localStorage consent
+    const consent = localStorage.getItem('cookie-consent');
+    if (!consent) {
+      // Show the banner with delay
+      setTimeout(() => {
+        banner.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+      }, 1000);
+    }
+
+    const hideBanner = () => {
+      banner.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+    };
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'accepted');
+      hideBanner();
+    });
+
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'declined');
+      hideBanner();
+    });
+  });
+</script>

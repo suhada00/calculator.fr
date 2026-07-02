@@ -1,0 +1,114 @@
+---
+import CalculatorLayout from '../../../../layouts/CalculatorLayout.astro';
+import CalculatorShell from '../../../../components/calculator/CalculatorShell.astro';
+import categories from '../../../../data/categories.json';
+
+export async function getStaticPaths() {
+  const files = import.meta.glob('../../../../data/calculators/**/*.json', { eager: true });
+  
+  // Build a lookup map of all calculators by their locale-neutral root slug/ID
+  const allCalculatorsMap: Record<string, any> = {};
+  for (const path in files) {
+    const file = (files[path] as any).default || files[path];
+    allCalculatorsMap[file.slug] = file;
+  }
+
+  const paths = [];
+
+  for (const path in files) {
+    const file = (files[path] as any).default || files[path];
+    
+    for (const locale of ['en', 'fr']) {
+      const trans = file.translations[locale];
+      if (!trans) continue;
+
+      const toolsSlug = locale === 'fr' ? 'calculateurs' : 'calculators';
+      
+      const catId = file.category;
+      const catConfig = (categories as any)[catId];
+      if (!catConfig) {
+        throw new Error(`Category ${catId} not found in categories.json for calculator ${file.slug}`);
+      }
+      const categorySlug = catConfig.translations[locale].slug;
+
+      // Build alternate translations map for hreflang tags
+      const alternateUrls: Record<string, string> = {};
+      for (const altLocale of ['en', 'fr']) {
+        const altTrans = file.translations[altLocale];
+        if (altTrans) {
+          const altToolsSlug = altLocale === 'fr' ? 'calculateurs' : 'calculators';
+          const altCatSlug = catConfig.translations[altLocale].slug;
+          alternateUrls[altLocale] = `/${altLocale}/${altToolsSlug}/${altCatSlug}/${altTrans.slug}/`;
+        }
+      }
+
+      // Map related calculators
+      const relatedCalculators = (file.relatedTo || [])
+        .map((relSlug: string) => {
+          const relFile = allCalculatorsMap[relSlug];
+          if (!relFile) return null;
+          const relTrans = relFile.translations[locale];
+          if (!relTrans) return null;
+          const relToolsSlug = locale === 'fr' ? 'calculateurs' : 'calculators';
+          const relCatSlug = (categories as any)[relFile.category].translations[locale].slug;
+          return {
+            name: relTrans.title,
+            path: `/${locale}/${relToolsSlug}/${relCatSlug}/${relTrans.slug}/`
+          };
+        })
+        .filter(Boolean);
+
+      paths.push({
+        params: {
+          lang: locale,
+          toolsSlug,
+          category: categorySlug,
+          slug: trans.slug
+        },
+        props: {
+          calculatorData: file,
+          locale,
+          alternateUrls,
+          relatedCalculators
+        }
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { calculatorData, locale, alternateUrls, relatedCalculators } = Astro.props;
+const trans = calculatorData.translations[locale];
+
+// Construct Breadcrumbs
+const catConfig = (categories as any)[calculatorData.category];
+const categoryName = catConfig.translations[locale].name;
+const categorySlug = catConfig.translations[locale].slug;
+const toolsSlug = locale === 'fr' ? 'calculateurs' : 'calculators';
+
+const breadcrumbs = [
+  { name: locale === 'fr' ? 'Accueil' : 'Home', item: `/${locale}/` },
+  { name: locale === 'fr' ? 'Calculateurs' : 'Calculators', item: `/${locale}/${toolsSlug}/` },
+  { name: categoryName, item: `/${locale}/${toolsSlug}/#${categorySlug}` },
+  { name: trans.title, item: Astro.url.pathname }
+];
+---
+
+<CalculatorLayout
+  calculatorData={calculatorData}
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+  categoryName={categoryName}
+  categoryPath={`/${locale}/${toolsSlug}/#${categorySlug}`}
+  relatedCalculators={relatedCalculators}
+>
+  <!-- Render dynamic interactive shell -->
+  <CalculatorShell
+    formulaId={calculatorData.formulaId}
+    locale={locale}
+    inputs={calculatorData.inputs}
+    outputs={calculatorData.outputs}
+  />
+</CalculatorLayout>

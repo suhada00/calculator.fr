@@ -1,0 +1,130 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Accordion from '../components/ui/Accordion.astro';
+import Card from '../components/ui/Card.astro';
+import { useTranslations } from '../lib/i18n';
+
+interface Props {
+  calculatorData: any; // Raw JSON calculator data
+  locale: string;
+  alternateUrls: Record<string, string>;
+  breadcrumbs: Array<{ name: string; item: string }>;
+  categoryName: string;
+  categoryPath: string;
+  relatedCalculators?: Array<{ name: string; path: string }>;
+}
+
+const {
+  calculatorData,
+  locale,
+  alternateUrls,
+  breadcrumbs,
+  categoryName,
+  categoryPath,
+  relatedCalculators = []
+} = Astro.props;
+
+const t = useTranslations(locale);
+const trans = calculatorData.translations[locale];
+
+// Define structured schema metadata for BaseLayout
+const schemaCalculator = {
+  name: trans.title,
+  description: trans.metaDescription,
+  url: Astro.url.pathname,
+  category: calculatorData.category
+};
+---
+
+<BaseLayout
+  title={`${trans.title} | ${locale === 'fr' ? 'Précis & Gratuit' : 'Accurate & Free'} — ${t('brandName')}`}
+  description={trans.metaDescription}
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+  calculator={schemaCalculator}
+  faqs={trans.faq}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-text-muted mb-6" aria-label="Breadcrumb">
+      {breadcrumbs.map((crumb, idx) => (
+        <>
+          {idx > 0 && <span class="text-neutral-300">/</span>}
+          {idx === breadcrumbs.length - 1 ? (
+            <span class="text-text-base font-semibold truncate" aria-current="page">{crumb.name}</span>
+          ) : (
+            <a href={crumb.item} class="hover:text-primary-500 transition-colors font-medium">{crumb.name}</a>
+          )}
+        </>
+      ))}
+    </nav>
+
+    <!-- Header info -->
+    <div class="max-w-3xl mb-8">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-xs font-bold bg-primary-50 text-primary-500 border border-primary-500/10 mb-3 select-none">
+        {categoryName}
+      </span>
+      <h1 class="text-h1 font-extrabold text-text-heading tracking-tight mb-3">
+        {trans.title}
+      </h1>
+      <p class="text-body-lg text-text-muted leading-relaxed">
+        {trans.intro}
+      </p>
+    </div>
+
+    <!-- Main Content Area: Two Columns (Calculators on Left, Sidebar on Right) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      <!-- Calculator Shell Column (occupies 2 cols on desktop) -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Calculator Interface slot -->
+        <slot />
+
+        <!-- Methodology explainer -->
+        {trans.methodology && (
+          <Card class="p-6">
+            <h2 class="text-h2 mb-4 font-bold border-b border-border pb-2">
+              {t('formulaMethodology')}
+            </h2>
+            <div class="text-body text-text-base leading-relaxed space-y-4 prose dark:prose-invert max-w-none" set:html={trans.methodology} />
+          </Card>
+        )}
+
+        <!-- FAQ section -->
+        {trans.faq && trans.faq.length > 0 && (
+          <div class="space-y-4">
+            <h2 class="text-h2 font-bold text-text-heading">
+              {t('faqTitle')}
+            </h2>
+            <Accordion items={trans.faq} />
+          </div>
+        )}
+      </div>
+
+      <!-- Sidebar Area (occupies 1 col on desktop) -->
+      <div class="space-y-8">
+
+        <!-- Related tools menu -->
+        {relatedCalculators && relatedCalculators.length > 0 && (
+          <Card class="p-6">
+            <h3 class="text-sm font-bold text-text-heading uppercase tracking-wider mb-4">
+              {t('relatedTools')}
+            </h3>
+            <ul class="space-y-3">
+              {relatedCalculators.map((tool) => (
+                <li>
+                  <a
+                    href={tool.path}
+                    class="block text-sm font-semibold text-primary-500 hover:text-primary-600 hover:underline transition-colors"
+                  >
+                    {tool.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

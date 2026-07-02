@@ -1,0 +1,41 @@
+# EuroCalc
+
+> EuroCalc is a premium, high-speed, multilingual web platform offering a suite of 19 accurate financial, health, unit conversion, and everyday calculators for European markets (primarily France and English-speaking users).
+
+## Core Calculators
+
+- [/en/calculators/](https://www.eurocalc.eu/en/calculators/) - Dynamic hub directory of all calculators (English).
+- [/fr/calculateurs/](https://www.eurocalc.eu/fr/calculateurs/) - Dynamic hub directory of all calculators (French).
+
+### Finance Section
+- [Property Capital Gains Tax](https://www.eurocalc.eu/en/calculators/finance/property-capital-gains-tax-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/calculateur-plus-value-immobiliere/) - Estimates real estate capital gains tax including progressive holding period deductions.
+- [Gross to Net Salary](https://www.eurocalc.eu/en/calculators/finance/gross-to-net-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/calculateur-salaire-brut-en-net/) - Converts French gross salary to net take-home pay based on professional status (Executive, Employee, Public sector).
+- [Income Tax Estimator](https://www.eurocalc.eu/en/calculators/finance/income-tax-estimator-france/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/estimateur-impot-sur-le-revenu/) - Computes progressive French income tax liabilities using updated 2026 inflation tax brackets.
+- [Loan Repayment](https://www.eurocalc.eu/en/calculators/finance/loan-repayment-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/simulateur-credit-remboursement/) - Simulates personal loan monthly payments and amortization schedules.
+- [Mortgage Calculator](https://www.eurocalc.eu/en/calculators/finance/mortgage-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/calculateur-pret-immobilier/) - Estimates real estate loan payments, including borrower insurance and debt-to-income (35% DTI) validation.
+- [Notary Fees](https://www.eurocalc.eu/en/calculators/finance/notary-fees-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/calculateur-frais-de-notaire/) - Computes property buying notary fees using the new 2026 departmental DMTO rate (5.0%).
+- [Rent vs Buy](https://www.eurocalc.eu/en/calculators/finance/rent-vs-buy-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/calculateur-louer-vs-acheter/) - Compares unrecoverable costs (fees, interest, opportunity costs) between renting and buying.
+- [Retirement Savings Projection](https://www.eurocalc.eu/en/calculators/finance/retirement-savings-projection-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/projection-epargne-retraite/) - Projects compound growth and inflation-adjusted nest egg values for pension planning.
+- [Savings Interest](https://www.eurocalc.eu/en/calculators/finance/savings-interest-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/calculateur-interets-depargne/) - Calculates savings yields on accounts, including French Livret A and compound growth.
+- [VAT Calculator](https://www.eurocalc.eu/en/calculators/finance/vat-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/finance/calculateur-de-tva/) - Performs standard (20%) and reduced (10%, 5.5%, 2.1%) French VAT conversions from HT to TTC and vice-versa.
+
+### Health Section
+- [BMI Calculator](https://www.eurocalc.eu/en/calculators/health/bmi-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/sante/calculateur-imc/) - Computes Body Mass Index and maps weight classification categories.
+- [BMR Calculator](https://www.eurocalc.eu/en/calculators/health/bmr-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/sante/calculateur-metabolisme-de-base/) - Estimates Basal Metabolic Rate using the Harris-Benedict formula.
+- [Calorie Calculator](https://www.eurocalc.eu/en/calculators/health/calorie-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/sante/calculateur-de-calories/) - Forecasts daily calorie need multipliers (TDEE) based on activity targets.
+
+### Conversion Section
+- [Length Converter](https://www.eurocalc.eu/en/calculators/conversion/length-converter/) | [French](https://www.eurocalc.eu/fr/calculateurs/convertisseurs/convertisseur-de-longueur/) - Standard conversions between metric (m, cm, km) and imperial (in, ft, yd, mi) systems.
+- [Weight Converter](https://www.eurocalc.eu/en/calculators/conversion/weight-converter/) | [French](https://www.eurocalc.eu/fr/calculateurs/convertisseurs/convertisseur-de-poids/) - Translates mass measurements between metric (kg, g) and imperial (lb, oz) scales.
+- [Temperature Converter](https://www.eurocalc.eu/en/calculators/conversion/temperature-converter/) | [French](https://www.eurocalc.eu/fr/calculateurs/convertisseurs/convertisseur-de-temperature/) - High-precision temperature scale conversions (Celsius, Fahrenheit, Kelvin).
+
+### Everyday Section
+- [Age Calculator](https://www.eurocalc.eu/en/calculators/everyday/age-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/vie-quotidienne/calculateur-d-age/) - Evaluates exact age down to years, months, and days plus birthday countdown.
+- [Tip Calculator](https://www.eurocalc.eu/en/calculators/everyday/tip-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/vie-quotidienne/calculateur-de-pourboire/) - Splits dining additions and calculates individual gratuity.
+- [Discount Calculator](https://www.eurocalc.eu/en/calculators/everyday/discount-calculator/) | [French](https://www.eurocalc.eu/fr/calculateurs/vie-quotidienne/calculateur-de-solde/) - Estimates final prices after markdown reductions and tax rates.
+
+## Practical Guides & Articles
+
+Explanatory guides describing the calculations, regulations, and math details:
+- [/en/blog/](https://www.eurocalc.eu/en/blog/) - English guides list directory.
+- [/fr/blog/](https://www.eurocalc.eu/fr/blog/) - French guides list directory.

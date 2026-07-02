@@ -1,0 +1,103 @@
+{
+  "slug": "vat-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "vat-calculator",
+  "inputs": [
+    {
+      "key": "amount",
+      "type": "number",
+      "min": 1,
+      "max": 10000000,
+      "step": 1,
+      "default": 100,
+      "translations": {
+        "en": { "label": "Amount (€)" },
+        "fr": { "label": "Montant (€)" }
+      }
+    },
+    {
+      "key": "vatRate",
+      "type": "select",
+      "default": 20,
+      "options": [
+        { "value": 20, "translations": { "en": "Standard Rate (20%)", "fr": "Taux normal (20%)" } },
+        { "value": 10, "translations": { "en": "Intermediate Rate (10%)", "fr": "Taux intermédiaire (10%)" } },
+        { "value": 5.5, "translations": { "en": "Reduced Rate (5.5%)", "fr": "Taux réduit (5,5%)" } },
+        { "value": 2.1, "translations": { "en": "Super-Reduced Rate (2.1%)", "fr": "Taux particulier (2,1%)" } }
+      ],
+      "translations": {
+        "en": { "label": "VAT Rate" },
+        "fr": { "label": "Taux de TVA" }
+      }
+    },
+    {
+      "key": "calculationType",
+      "type": "select",
+      "default": "exclude",
+      "options": [
+        { "value": "exclude", "translations": { "en": "Add VAT (Net HT to Gross TTC)", "fr": "Calculer la TVA (HT vers TTC)" } },
+        { "value": "include", "translations": { "en": "Extract VAT (Gross TTC to Net HT)", "fr": "Extraire la TVA (TTC vers HT)" } }
+      ],
+      "translations": {
+        "en": { "label": "Calculation Mode" },
+        "fr": { "label": "Mode de calcul" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "netAmount",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Net Amount (HT)" },
+        "fr": { "label": "Montant Hors Taxes (HT)" }
+      }
+    },
+    {
+      "key": "vatAmount",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "VAT (TVA) Amount" },
+        "fr": { "label": "Montant de la TVA" }
+      }
+    },
+    {
+      "key": "grossAmount",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Gross Amount (TTC)" },
+        "fr": { "label": "Montant Toutes Taxes Comprises (TTC)" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "VAT Calculator",
+      "slug": "vat-calculator",
+      "metaDescription": "Add or extract Value-Added Tax (VAT) for prices. Instant calculator supporting French rates of 20%, 10%, 5.5%, and 2.1%.",
+      "intro": "A VAT calculator is a highly useful financial tool designed to add or extract Value-Added Tax (VAT, or TVA in France) from any price. VAT is a consumption tax placed on product sales and service delivery throughout the European Union. Businesses are required to calculate VAT on transactions, while consumers pay the final retail price. In France, the standard VAT rate is 20%, which applies to most goods and services. However, reduced rates exist for specific sectors: 10% for restaurant services and passenger transport, 5.5% for essential food products and books, and a super-reduced rate of 2.1% for reimbursed medicines and newspapers. This simulator operates in two modes: it can add VAT to a net price to determine the gross retail price, or it can extract VAT from a gross price to calculate the base net price. Understanding these amounts is vital for billing clients or compiling accounting reports. Both businesses and independent freelancers rely on accurate tax evaluations to stay compliant with standard government filing schedules.",
+      "methodology": "<p>This VAT calculator performs standard addition or subtraction of tax based on the selection:</p><ul><li><strong>Add VAT (Net to Gross):</strong> Calculates VAT amount as <code>Net Amount * (VAT Rate / 100)</code> and Gross Amount as <code>Net Amount + VAT Amount</code>.</li><li><strong>Extract VAT (Gross to Net):</strong> Calculates Net Amount as <code>Gross Amount / (1 + (VAT Rate / 100))</code> and VAT Amount as <code>Gross Amount - Net Amount</code>.</li></ul><p>Standard tax rates in France include 20% (standard), 10% (reduced), 5.5% (special reduced), and 2.1% (super reduced).</p>",
+      "faq": [
+        { "q": "What is the difference between Net (HT) and Gross (TTC) prices in France?", "a": "Net price (Hors Taxe - HT) represents the price before value-added tax is applied. Gross price (Toutes Taxes Comprises - TTC) represents the final price paid by the end customer, which includes VAT." },
+        { "q": "Can businesses claim back VAT in France?", "a": "Yes. Most businesses can reclaim the VAT they pay on business expenses and purchases, and they pay the government the net difference between the VAT they collect from customers and the VAT they pay to suppliers." },
+        { "q": "What is the VAT rate for ebooks and physical books?", "a": "In France, both physical books and digital ebooks are subject to the reduced VAT rate of 5.5% to encourage reading and accessibility to culture." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur de TVA",
+      "slug": "calculateur-de-tva",
+      "metaDescription": "Calculez facilement vos montants HT et TTC. Simulateur en ligne gratuit avec les taux de TVA français de 20%, 10%, 5,5% et 2,1%.",
+      "intro": "Un calculateur de TVA est un outil financier très pratique conçu pour ajouter ou extraire la taxe sur la valeur ajoutée (TVA) de n'importe quel prix. La TVA est un impôt indirect sur la consommation appliqué sur les ventes de biens et de prestations de services. Les entreprises sont tenues de calculer la TVA sur leurs ventes, tandis que les consommateurs paient le prix final TTC. En France, le taux normal de TVA est de 20%, applicable à la majorité des produits et services. Il existe également des taux réduits : 10% pour la restauration et les transports, 5,5% pour les produits alimentaires de première nécessité et les livres, et un taux super-réduit de 2,1% pour les médicaments remboursés et la presse. Ce simulateur propose deux modes : calculer le montant TTC à partir du prix HT (ajouter la TVA) ou calculer le montant HT à partir du prix TTC (extraire la TVA).",
+      "methodology": "<p>Ce calculateur de TVA effectue deux types d'opérations de calcul :</p><ul><li><strong>Calculer le montant TTC (Ajouter la TVA) :</strong> Le montant de la TVA est égal à <code>Montant HT * (Taux / 100)</code>. Le prix TTC est égal à <code>Montant HT + TVA</code>.</li><li><strong>Calculer le montant HT (Extraire la TVA) :</strong> Le montant HT est égal à <code>Montant TTC / (1 + (Taux / 100))</code>. Le montant de la TVA est la différence <code>Montant TTC - Montant HT</code>.</li></ul><p>Les taux de TVA réglementaires en France sont : 20% (taux normal), 10% (taux intermédiaire), 5,5% (taux réduit) et 2,1% (taux particulier).</p>",
+      "faq": [
+        { "q": "Quelle est la différence entre HT et TTC ?", "a": "Le montant HT (Hors Taxes) est le prix brut avant application de la taxe. Le montant TTC (Toutes Taxes Comprises) intègre la valeur de la taxe due à l'État, payée par le client final." },
+        { "q": "Comment récupérer la TVA pour une entreprise ?", "a": "Les professionnels assujettis collectent la TVA sur leurs ventes et déduisent la TVA payée sur leurs achats professionnels. Ils versent ensuite la différence (la TVA due) au service des impôts des entreprises." },
+        { "q": "Qu'est-ce que la franchise en base de TVA ?", "a": "C'est un régime fiscal qui dispense les petites entreprises du paiement et de la déclaration de la TVA, à condition de ne pas dépasser certains seuils de chiffre d'affaires. Leurs factures portent alors la mention 'TVA non applicable'." }
+      ]
+    }
+  },
+  "relatedTo": ["gross-to-net-calculator", "income-tax-calculator", "mortgage-calculator"],
+  "tags": ["taxes", "vat", "business"]
+}

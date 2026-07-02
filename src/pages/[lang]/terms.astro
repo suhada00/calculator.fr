@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import { useTranslations } from '../../lib/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'fr' } }
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang || 'en';
+const t = useTranslations(locale);
+
+const alternateUrls = {
+  en: `/en/terms/`,
+  fr: `/fr/terms/`
+};
+
+const breadcrumbs = [
+  { name: locale === 'fr' ? 'Accueil' : 'Home', item: `/${locale}/` },
+  { name: t('terms'), item: Astro.url.pathname }
+];
+---
+
+<BaseLayout
+  title={`${t('terms')} — ${t('brandName')}`}
+  description={locale === 'fr' 
+    ? 'Consultez les conditions d\'utilisation de nos outils en ligne.' 
+    : 'Read the terms of service governing the use of our online tools.'
+  }
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-display font-extrabold text-text-heading mb-6 tracking-tight">
+      {t('terms')}
+    </h1>
+
+    <Card class="p-6 md:p-8 space-y-6 text-body text-text-base leading-relaxed">
+      <section class="space-y-3">
+        <h2 class="text-h2 font-bold text-text-heading">1. Acceptation des Conditions</h2>
+        <p>
+          {locale === 'fr'
+            ? 'En accédant et en utilisant ce site web, vous acceptez d\'être lié par les présentes conditions d\'utilisation. Si vous n\'acceptez pas ces conditions, veuillez ne pas utiliser nos services.'
+            : 'By accessing and using this website, you agree to be bound by these terms of service. If you do not agree to these terms, please do not use our services.'
+          }
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-h2 font-bold text-text-heading">2. Clause de non-responsabilité (Disclaimer)</h2>
+        <p>
+          {locale === 'fr'
+            ? 'Les calculateurs et informations fournis sur ce site le sont à titre purement indicatif et d\'illustration. Bien que nous fassions tout notre possible pour garantir l\'exactitude des formules de calcul, nous ne pouvons garantir que les résultats sont exempts d\'erreurs. Les simulations ne remplacent pas les conseils de professionnels certifiés (comptables, notaires, conseillers financiers).'
+            : 'The calculators and information provided on this website are for illustrative and informational purposes only. While we do our best to ensure the accuracy of the calculation formulas, we cannot guarantee the results are free from errors. Simulators do not replace the advice of certified professionals (accountants, notaries, financial advisors).'
+          }
+        </p>
+        <p>
+          {locale === 'fr'
+            ? 'Nous déclinons toute responsabilité en cas de pertes financières, de décisions erronées ou de préjudices découlant de l\'utilisation de nos outils.'
+            : 'We disclaim all liability for any financial losses, incorrect decisions, or damages arising from the use of our tools.'
+          }
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-h2 font-bold text-text-heading">3. Propriété Intellectuelle</h2>
+        <p>
+          {locale === 'fr'
+            ? 'La structure du site, les textes explicatifs, les codes sources des formules et le système de design sont la propriété exclusive de notre plateforme et ne peuvent être reproduits sans accord écrit préalable.'
+            : 'The site structure, explanatory articles, source code of the formulas, and the design system are the exclusive property of our platform and cannot be reproduced without prior written consent.'
+          }
+        </p>
+      </section>
+    </Card>
+  </div>
+</BaseLayout>

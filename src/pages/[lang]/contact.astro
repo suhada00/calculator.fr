@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+import Input from '../../components/ui/Input.astro';
+import { useTranslations } from '../../lib/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'fr' } }
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang || 'en';
+const t = useTranslations(locale);
+
+const alternateUrls = {
+  en: `/en/contact/`,
+  fr: `/fr/contact/`
+};
+
+const breadcrumbs = [
+  { name: locale === 'fr' ? 'Accueil' : 'Home', item: `/${locale}/` },
+  { name: t('contact'), item: Astro.url.pathname }
+];
+---
+
+<BaseLayout
+  title={`${t('contact')} — ${t('brandName')}`}
+  description={locale === 'fr' 
+    ? 'Contactez l\'équipe de support pour toute suggestion ou question sur nos calculateurs.' 
+    : 'Contact our team for suggestions, questions, or issues regarding our tools.'
+  }
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-display font-extrabold text-text-heading mb-6 tracking-tight text-center">
+      {t('contact')}
+    </h1>
+
+    <Card class="p-6 md:p-8">
+      <form action="https://formspree.io/f/placeholder" method="POST" class="space-y-5" onsubmit="alert('Demo form submitted! In production, this connects to your serverless endpoint.'); return false;">
+        <!-- Honeypot field for spam prevention -->
+        <div class="hidden">
+          <label for="honeypot">Leave blank</label>
+          <input type="text" name="honeypot" id="honeypot" />
+        </div>
+
+        <Input
+          type="text"
+          id="contact-name"
+          name="name"
+          label={locale === 'fr' ? 'Nom complet' : 'Full Name'}
+          placeholder={locale === 'fr' ? 'Jean Dupont' : 'John Doe'}
+          required
+        />
+
+        <Input
+          type="email"
+          id="contact-email"
+          name="email"
+          label={locale === 'fr' ? 'Adresse email' : 'Email Address'}
+          placeholder="email@example.com"
+          required
+        />
+
+        <div class="flex flex-col gap-1.5 w-full">
+          <label for="contact-message" class="text-sm font-semibold text-text-heading select-none">
+            {locale === 'fr' ? 'Message' : 'Message'}
+            <span class="text-danger-500 ml-0.5">*</span>
+          </label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows="5"
+            required
+            class="w-full bg-surface border border-border rounded-md px-4 py-2.5 text-text-heading text-body placeholder:text-text-muted focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all"
+            placeholder={locale === 'fr' ? 'Comment pouvons-nous vous aider ?' : 'How can we help you?'}
+          ></textarea>
+        </div>
+
+        <Button type="submit" variant="primary" class="w-full">
+          {locale === 'fr' ? 'Envoyer le message' : 'Send Message'}
+        </Button>
+      </form>
+    </Card>
+  </div>
+</BaseLayout>

@@ -1,0 +1,115 @@
+{
+  "slug": "capital-gains-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "capital-gains",
+  "inputs": [
+    {
+      "key": "purchasePrice",
+      "type": "number",
+      "min": 1000,
+      "max": 10000000,
+      "step": 5000,
+      "default": 150000,
+      "translations": {
+        "en": { "label": "Purchase Price (€)" },
+        "fr": { "label": "Prix d'achat initial (€)" }
+      }
+    },
+    {
+      "key": "salePrice",
+      "type": "number",
+      "min": 1000,
+      "max": 10000000,
+      "step": 5000,
+      "default": 250000,
+      "translations": {
+        "en": { "label": "Expected Sale Price (€)" },
+        "fr": { "label": "Prix de revente prévu (€)" }
+      }
+    },
+    {
+      "key": "holdingYears",
+      "type": "number",
+      "min": 1,
+      "max": 40,
+      "step": 1,
+      "default": 10,
+      "translations": {
+        "en": { "label": "Holding Period (years)" },
+        "fr": { "label": "Durée de détention (années)" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "grossGain",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Gross Capital Gain" },
+        "fr": { "label": "Plus-value brute" }
+      }
+    },
+    {
+      "key": "capitalGainsTax",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Income Tax (19%)" },
+        "fr": { "label": "Impôt sur le revenu (19%)" }
+      }
+    },
+    {
+      "key": "socialContributions",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Social Contributions (17.2%)" },
+        "fr": { "label": "Prélèvements sociaux (17,2%)" }
+      }
+    },
+    {
+      "key": "totalTaxDue",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Tax Due" },
+        "fr": { "label": "Total de l'impôt dû" }
+      }
+    },
+    {
+      "key": "netGain",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Net Profit from Sale" },
+        "fr": { "label": "Plus-value nette d'impôt" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Property Capital Gains Tax Calculator (France)",
+      "slug": "property-capital-gains-tax-calculator",
+      "metaDescription": "Calculate capital gains tax on property sales in France. Estimates 19% tax and 17.2% social security contributions with holding discounts.",
+      "intro": "A capital gains tax calculator on real estate helps homeowners in France estimate the taxes and social contributions due when selling a secondary residence or rental property. In France, the primary residence is completely exempt from capital gains tax. However, sales of investment properties, holiday homes, or inherited estates are subject to a two-tier tax: a flat income tax rate of 19% and social security contributions of 17.2%. The French tax system rewards long-term property ownership by offering gradual tax relief discounts (abattement) based on the number of years the property was held. Complete tax exemption requires holding the property for 22 years for the 19% income tax, and 30 years for the 17.2% social contributions. This simulator takes your original purchase price and expected sale price, alongside the number of holding years, to estimate your tax liabilities. Use this tool to forecast your net proceeds from a property transaction.",
+      "methodology": "<p>This calculator estimates capital gains tax (plus-value immobilière) in France:</p><ul><li><strong>Gross Gain:</strong> Calculated as <code>Sale Price - Purchase Price</code>.</li><li><strong>Income Tax Base (19% rate):</strong> Taper relief of 6% per year is applied from year 6 to 21, and 4% in year 22. Full exemption (100% discount) is reached after 22 years of holding.</li><li><strong>Social Security Base (17.2% rate):</strong> Taper relief of 1.65% per year from year 6 to 21, 1.6% from year 22 to 29, and 9% in year 30. Full exemption (100% discount) is reached after 30 years of holding.</li></ul><p>Formula used: <code>Total Tax = (Tax Base * 0.19) + (Social Base * 0.172)</code>. The primary residence is excluded since it is exempt by default.</p>",
+      "faq": [
+        { "q": "Are there exemptions from capital gains tax in France?", "a": "Yes. Selling your primary residence is 100% tax-free. Furthermore, sales under €15,000, or sales where the proceeds are used to purchase a primary residence within 2 years (under certain conditions), are also exempt." },
+        { "q": "How is the purchase price adjusted for tax calculations?", "a": "To calculate taxable capital gains, the purchase price can be increased by actual notary costs (or a flat 7.5% rate) and renovation works (either actual bills or a flat 15% rate if held for over 5 years), reducing the overall taxable gain." },
+        { "q": "What happens if I sell at a loss?", "a": "If you sell at a loss, you do not owe any capital gains tax. However, unlike financial securities, property capital losses (moins-values) generally cannot be offset against capital gains from other property sales." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur de Plus-Value Immobilière",
+      "slug": "calculateur-plus-value-immobiliere",
+      "metaDescription": "Estimez l'impôt sur la plus-value immobilière pour vos ventes en France. Calculez les abattements pour durée de détention gratuitement.",
+      "intro": "Un calculateur de plus-value immobilière aide les propriétaires en France à estimer l'impôt et les prélèvements sociaux dus lors de la vente d'une résidence secondaire ou d'un investissement locatif. En France, la vente de la résidence principale est totalement exonérée d'impôt sur la plus-value. En revanche, les résidences secondaires, biens locatifs ou logements vacants sont soumis à une taxation double : l'impôt forfaitaire sur le revenu de 19% et les prélèvements sociaux au taux de 17,2%. Le système fiscal français applique des abattements pour durée de détention, réduisant progressivement la base taxable au fil des ans. L'exonération totale d'impôt sur le revenu (19%) est acquise après 22 ans de détention, tandis que l'exonération totale de prélèvements sociaux (17,2%) nécessite 30 ans. Ce simulateur calcule la plus-value brute et estime l'impôt final et les prélèvements sociaux dus en fonction du nombre d'années de détention. De plus, ce calcul prend en compte les frais d'acquisition et les dépenses de travaux d'amélioration qui peuvent être ajoutés au prix d'achat pour réduire la valeur imposable. Réaliser cette simulation vous aide à anticiper précisément le montant net disponible après la transaction pour réinvestir dans votre prochain projet.",
+      "methodology": "<p>Ce simulateur estime le coût fiscal d'une plus-value immobilière en appliquant les règles d'abattements forfaitaires par année de détention :</p><ul><li><strong>Plus-value brute :</strong> Calculée par la différence <code>Prix de vente - Prix d'achat</code>.</li><li><strong>Base taxable Impôt sur le revenu (19%) :</strong> Abattement de 6% par an de la 6ème à la 21ème année, et 4% la 22ème année. Exonération totale après 22 ans de détention.</li><li><strong>Base taxable Prélèvements Sociaux (17.2%) :</strong> Abattement de 1,65% par an de la 6ème à la 21ème année, 1,6% de la 22ème à la 29ème année, et 9% la 30ème année. Exonération totale après 30 ans de détention.</li></ul><p>Impôt dû = <code>(Base impôt * 19%) + (Base prélèvements * 17,2%)</code>.</p>",
+      "faq": [
+        { "q": "Quels sont les cas d'exonération de la plus-value ?", "a": "La vente de la résidence principale est exonérée d'impôt. De même, les ventes d'un montant inférieur à 15 000 € ou la première vente d'une résidence secondaire (sous réserve de remployer les fonds dans l'achat d'une résidence principale) sont exonérées." },
+        { "q": "Peut-on ajouter des frais au prix d'achat initial ?", "a": "Oui, vous pouvez majorer le prix d'achat de frais d'acquisition forfaitaires de 7,5% (ou frais réels) et de frais de travaux de 15% (forfaitaire si détention > 5 ans, ou dépenses réelles sur justificatifs), ce qui réduit la plus-value imposable." },
+        { "q": "Une moins-value immobilière est-elle déductible ?", "a": "Non. Si vous vendez un bien immobilier en subissant une moins-value (perte), celle-ci n'est pas déductible de vos autres revenus et ne peut pas compenser les plus-values d'autres ventes immobilières." }
+      ]
+    }
+  },
+  "relatedTo": ["notary-fees-calculator", "mortgage-calculator", "income-tax-calculator"],
+  "tags": ["taxes", "property", "capital-gains"]
+}

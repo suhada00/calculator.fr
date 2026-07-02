@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import categories from '../../data/categories.json';
+import { useTranslations } from '../../lib/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'fr' } }
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang || 'en';
+const t = useTranslations(locale);
+
+const toolsSlug = locale === 'fr' ? 'calculateurs' : 'calculators';
+const alternateLang = locale === 'en' ? 'fr' : 'en';
+
+const alternateUrls = {
+  en: `/en/`,
+  fr: `/fr/`
+};
+
+// Fetch published calculators for quick links
+const files = import.meta.glob('../../data/calculators/**/*.json', { eager: true });
+const calculators = [];
+for (const path in files) {
+  const file = (files[path] as any).default || files[path];
+  if (file.status === 'published') {
+    const trans = file.translations[locale];
+    const catConfig = (categories as any)[file.category];
+    calculators.push({
+      title: trans.title,
+      slug: file.slug,
+      categoryName: catConfig.translations[locale].name,
+      path: `/${locale}/${toolsSlug}/${catConfig.translations[locale].slug}/${trans.slug}/`
+    });
+  }
+}
+
+// Group categories for directory
+const categoryList = Object.keys(categories).map((catKey) => {
+  const catConfig = (categories as any)[catKey];
+  return {
+    name: catConfig.translations[locale].name,
+    slug: catConfig.translations[locale].slug,
+    path: `/${locale}/${toolsSlug}/#${catConfig.translations[locale].slug}`
+  };
+});
+---
+
+<BaseLayout
+  title={`${t('homeTitle')} — Precise Online Calculators`}
+  description={t('homeSubtitle')}
+  locale={locale}
+  alternateUrls={alternateUrls}
+>
+  <!-- Hero Section -->
+  <div class="relative overflow-hidden bg-gradient-to-b from-primary-50 to-white dark:from-neutral-0/10 dark:to-surface border-b border-border py-20 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h1 class="text-display font-extrabold text-text-heading tracking-tight mb-6 max-w-4xl mx-auto">
+        {t('homeTitle')}
+      </h1>
+      <p class="text-body-lg text-text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+        {t('homeSubtitle')}
+      </p>
+
+      <!-- Category quick buttons -->
+      <div class="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+        {categoryList.map((cat) => (
+          <a
+            href={cat.path}
+            class="px-4 py-2 rounded-full border border-border bg-surface text-sm font-semibold text-text-base hover:border-primary-500 hover:text-primary-500 hover:shadow-sm transition-all"
+          >
+            {cat.name}
+          </a>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Background subtle gradient circle -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary-500/5 blur-3xl -z-10"></div>
+  </div>
+
+  <!-- Featured Calculators Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-h2 font-extrabold text-text-heading">
+        {locale === 'fr' ? 'Simulateurs populaires' : 'Featured Calculators'}
+      </h2>
+      <a
+        href={`/${locale}/${toolsSlug}/`}
+        class="text-sm font-bold text-primary-500 hover:text-primary-600 flex items-center gap-1 group"
+      >
+        <span>{locale === 'fr' ? 'Tous les calculateurs' : 'Browse All'}</span>
+        <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {calculators.map((calc) => (
+        <a href={calc.path} class="group">
+          <Card class="p-6 h-full flex flex-col justify-between hover:border-primary-500 hover:shadow-md transition-all duration-200">
+            <div>
+              <span class="text-xs font-bold text-primary-500 uppercase tracking-wider block mb-2">
+                {calc.categoryName}
+              </span>
+              <h3 class="text-h3 font-bold text-text-heading group-hover:text-primary-500 transition-colors">
+                {calc.title}
+              </h3>
+            </div>
+            <div class="mt-6 pt-4 border-t border-border/50 flex items-center justify-between text-sm font-semibold text-text-muted group-hover:text-primary-500 transition-colors">
+              <span>{locale === 'fr' ? 'Lancer la simulation' : 'Start simulation'}</span>
+              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </Card>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

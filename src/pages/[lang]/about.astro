@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import { useTranslations } from '../../lib/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'fr' } }
+  ];
+}
+
+const { lang } = Astro.params;
+const locale = lang || 'en';
+const t = useTranslations(locale);
+
+const alternateUrls = {
+  en: `/en/about/`,
+  fr: `/fr/about/`
+};
+
+const breadcrumbs = [
+  { name: locale === 'fr' ? 'Accueil' : 'Home', item: `/${locale}/` },
+  { name: t('about'), item: Astro.url.pathname }
+];
+---
+
+<BaseLayout
+  title={`${t('about')} — ${t('brandName')}`}
+  description={locale === 'fr' 
+    ? 'En savoir plus sur notre plateforme de calculs gratuits et nos standards de précision.' 
+    : 'Learn more about our free calculator platform and our commitment to accuracy.'
+  }
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-display font-extrabold text-text-heading mb-6 tracking-tight">
+      {t('about')}
+    </h1>
+
+    <div class="space-y-8 text-body text-text-base leading-relaxed">
+      <Card class="p-6 md:p-8">
+        <h2 class="text-h2 font-bold text-text-heading mb-4">
+          {locale === 'fr' ? 'Notre Mission' : 'Our Mission'}
+        </h2>
+        <p>
+          {locale === 'fr'
+            ? 'La Plateforme Européenne de Calculateurs a pour mission de fournir des outils de calcul en ligne gratuits, précis et instantanés. Nous croyons que l\'accès à des outils financiers, de conversion et du quotidien de haute qualité doit être ouvert à tous, sans inscription, sans publicité intrusive et sans partage de données personnelles.'
+            : 'The European Calculator Platform was built to provide free, precise, and instant online tools. We believe that access to high-quality financial, conversion, and everyday calculation resources should be open to everyone, without requiring registrations, invasive advertising, or sharing of personal data.'
+          }
+        </p>
+      </Card>
+
+      <div class="space-y-4">
+        <h2 class="text-h2 font-bold text-text-heading">
+          {locale === 'fr' ? 'Engagement de Précision & E-E-A-T' : 'Commitment to Accuracy & Trust'}
+        </h2>
+        <p>
+          {locale === 'fr'
+            ? 'Tous nos simulateurs reposent sur des formules mathématiques standardisées et des sources réglementaires vérifiées (comme les barèmes fiscaux officiels de l\'administration française). Chaque formule fait l\'objet de tests unitaires rigoureux afin de garantir des résultats fiables.'
+            : 'All of our simulators are backed by standardized mathematical formulas and verified regulatory sources (such as the official tax schedules published by the French government). Every formula undergoes rigorous unit testing to guarantee correct results.'
+          }
+        </p>
+        <p>
+          {locale === 'fr'
+            ? 'Les chiffres liés aux taxes, impôts ou frais légaux sont audités régulièrement pour refléter les réglementations en vigueur.'
+            : 'Tax rules, interest calculations, and legal figures are audited regularly to reflect active, up-to-date legislation.'
+          }
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-h2 font-bold text-text-heading">
+          {locale === 'fr' ? 'Transparence Financière' : 'Financial Transparency'}
+        </h2>
+        <p>
+          {locale === 'fr'
+            ? 'Pour financer le développement de la plateforme et l\'hébergement des serveurs tout en la maintenant gratuite, nous affichons des encarts publicitaires. Nous veillons à ce que ces publicités respectent le confort visuel de nos utilisateurs et ne nuisent jamais à l\'utilisation de nos calculateurs.'
+            : 'To fund the ongoing development of this platform and server hosting while keeping it entirely free, we display ads. We ensure these advertisements respect your reading comfort and never interfere with using our calculators.'
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

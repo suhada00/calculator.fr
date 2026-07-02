@@ -1,0 +1,79 @@
+{
+  "slug": "bmi-calculator",
+  "category": "health",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "bmi-calculator",
+  "inputs": [
+    {
+      "key": "weight",
+      "type": "number",
+      "min": 10,
+      "max": 300,
+      "step": 1,
+      "default": 70,
+      "translations": {
+        "en": { "label": "Weight (kg)" },
+        "fr": { "label": "Poids (kg)" }
+      }
+    },
+    {
+      "key": "height",
+      "type": "number",
+      "min": 50,
+      "max": 250,
+      "step": 1,
+      "default": 170,
+      "translations": {
+        "en": { "label": "Height (cm)" },
+        "fr": { "label": "Taille (cm)" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "bmi",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Your Body Mass Index (BMI)" },
+        "fr": { "label": "Votre Indice de Masse Corporelle (IMC)" }
+      }
+    },
+    {
+      "key": "category",
+      "format": "text",
+      "translations": {
+        "en": { "label": "Weight Classification" },
+        "fr": { "label": "Classification de corpulence" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "BMI Calculator",
+      "slug": "bmi-calculator",
+      "metaDescription": "Calculate your Body Mass Index (BMI) instantly. Find your weight status and health classification using height and weight inputs.",
+      "intro": "A Body Mass Index (BMI) calculator is an easy-to-use screening tool designed to estimate a person's body fat based on their height and weight. Maintaining a healthy body weight is essential for long-term health, as being underweight or overweight is associated with various chronic medical conditions. By inputting your current weight in kilograms and your height in centimeters, you can instantly determine your exact BMI score. This number serves as a general guide to help categorize adults into different weight ranges: underweight, normal weight, overweight, and obese. While the BMI formula does not directly measure body fat or account for muscle mass or body composition, it remains a widely accepted clinical standard for identifying potential health risks related to body fatness. Understanding your classification allows you to consult with healthcare professionals and adjust your nutrition and exercise plans to achieve a healthier weight classification. Using our tool regularly helps you track your fitness progress over time and stay motivated on your wellness journey.",
+      "methodology": "<p>This BMI calculator uses the standard World Health Organization formula:</p><p class='font-mono bg-surface-alt p-3 rounded border border-border my-2'>BMI = weight (kg) / [height (m)]²</p><p>Weight classifications are mapped as follows:</p><ul><li><strong>Underweight:</strong> BMI &lt; 18.5</li><li><strong>Normal Weight:</strong> BMI between 18.5 and 24.9</li><li><strong>Overweight:</strong> BMI between 25.0 and 29.9</li><li><strong>Obese:</strong> BMI &ge; 30.0</li></ul>",
+      "faq": [
+        { "q": "What is a healthy BMI range?", "a": "For most adults, a healthy BMI range is between 18.5 and 24.9. Scores below 18.5 indicate underweight, while scores above 25 indicate overweight." },
+        { "q": "Does BMI account for muscle mass?", "a": "No, BMI only uses weight and height. Athletes with high muscle mass may be classified as overweight or obese, even if they have very low body fat." },
+        { "q": "Is BMI the same for men and women?", "a": "Yes, the standard BMI formula is identical for adult men and women, although body fat percentages and distribution can vary between genders." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur d'IMC",
+      "slug": "calculateur-imc",
+      "metaDescription": "Calculez votre Indice de Masse Corporelle (IMC) gratuitement. Évaluez votre corpulence et les classifications de poids officielles de l'OMS.",
+      "intro": "Un calculateur d'Indice de Masse Corporelle (IMC) est un outil de dépistage rapide conçu pour évaluer la corpulence d'une personne adulte en fonction de sa taille et de son poids. Surveiller sa corpulence constitue un indicateur fondamental pour prévenir certains risques de santé, car l'insuffisance pondérale et l'obésité augmentent la probabilité de développer des maladies cardiovasculaires ou du diabète. En indiquant votre poids actuel en kilogrammes et votre taille en centimètres, le simulateur détermine immédiatement votre indice d'adiposité. Ce score sert à classer les adultes dans différentes catégories de corpulence établies par l'Organisation Mondiale de la Santé (OMS) : maigreur, corpulence normale, surpoids et obésité. Bien que l'IMC ne mesure pas directement le pourcentage de graisse corporelle ou la masse musculaire des sportifs, il demeure le standard international clinique de référence. Connaître votre indice vous permet d'adapter votre hygiène de vie, votre alimentation ou vos programmes sportifs de manière éclairée afin d'atteindre un poids stable et sain pour votre santé à long terme.",
+      "methodology": "<p>Ce calculateur d'IMC applique la formule officielle de l'Organisation Mondiale de la Santé (OMS) :</p><p class='font-mono bg-surface-alt p-3 rounded border border-border my-2'>IMC = poids (kg) / [taille (m)]²</p><p>Les classifications de corpulence sont définies comme suit :</p><ul><li><strong>Maigreur / Poids insuffisant :</strong> IMC &lt; 18,5</li><li><strong>Corpulence normale :</strong> IMC entre 18,5 et 24,9</li><li><strong>Surpoids :</strong> IMC entre 25,0 et 29,9</li><li><strong>Obésité :</strong> IMC &ge; 30,0</li></ul>",
+      "faq": [
+        { "q": "Qu'est-ce qu'un IMC sain ?", "a": "Un IMC est considéré comme sain s'il se situe entre 18,5 et 24,9. En dessous, la personne est en insuffisance pondérale, au-dessus elle est en surpoids." },
+        { "q": "L'IMC est-il fiable pour les sportifs ?", "a": "Non, car le muscle pèse plus lourd que la graisse. Un athlète très musclé peut avoir un IMC élevé sans pour autant présenter un excès de masse grasse." },
+        { "q": "L'IMC s'applique-t-il aux enfants ?", "a": "La formule de calcul de l'IMC est la même, mais les seuils d'interprétation diffèrent et nécessitent des courbes de croissance spécifiques aux enfants." }
+      ]
+    }
+  },
+  "relatedTo": ["bmr-calculator", "calorie-calculator"],
+  "tags": ["health", "weight", "fitness"]
+}

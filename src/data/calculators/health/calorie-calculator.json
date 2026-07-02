@@ -1,0 +1,128 @@
+{
+  "slug": "calorie-calculator",
+  "category": "health",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "calorie-calculator",
+  "inputs": [
+    {
+      "key": "weight",
+      "type": "number",
+      "min": 10,
+      "max": 300,
+      "step": 1,
+      "default": 70,
+      "translations": {
+        "en": { "label": "Weight (kg)" },
+        "fr": { "label": "Poids (kg)" }
+      }
+    },
+    {
+      "key": "height",
+      "type": "number",
+      "min": 50,
+      "max": 250,
+      "step": 1,
+      "default": 170,
+      "translations": {
+        "en": { "label": "Height (cm)" },
+        "fr": { "label": "Taille (cm)" }
+      }
+    },
+    {
+      "key": "age",
+      "type": "number",
+      "min": 1,
+      "max": 120,
+      "step": 1,
+      "default": 30,
+      "translations": {
+        "en": { "label": "Age (years)" },
+        "fr": { "label": "Âge (années)" }
+      }
+    },
+    {
+      "key": "gender",
+      "type": "select",
+      "default": "male",
+      "options": [
+        { "value": "male", "translations": { "en": "Male", "fr": "Homme" } },
+        { "value": "female", "translations": { "en": "Female", "fr": "Femme" } }
+      ],
+      "translations": {
+        "en": { "label": "Biological Gender" },
+        "fr": { "label": "Genre biologique" }
+      }
+    },
+    {
+      "key": "activityLevel",
+      "type": "select",
+      "default": "moderate",
+      "options": [
+        { "value": "sedentary", "translations": { "en": "Sedentary (desk job)", "fr": "Sédentaire (travail de bureau)" } },
+        { "value": "light", "translations": { "en": "Lightly Active (1-3 days/wk)", "fr": "Légèrement Actif (1-3 j/semaine)" } },
+        { "value": "moderate", "translations": { "en": "Moderately Active (3-5 days/wk)", "fr": "Modérément Actif (3-5 j/semaine)" } },
+        { "value": "active", "translations": { "en": "Active (6-7 days/wk)", "fr": "Très Actif (6-7 j/semaine)" } },
+        { "value": "veryActive", "translations": { "en": "Very Active (athletes/heavy labor)", "fr": "Extrêmement Actif (travail physique)" } }
+      ],
+      "translations": {
+        "en": { "label": "Daily Activity Level" },
+        "fr": { "label": "Niveau d'activité journalier" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "maintenance",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Daily Maintenance Calories (kcal)" },
+        "fr": { "label": "Besoins énergétiques de maintien (kcal)" }
+      }
+    },
+    {
+      "key": "weightLoss",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Weight Loss (deficit, kcal)" },
+        "fr": { "label": "Objectif perte de poids (déficit, kcal)" }
+      }
+    },
+    {
+      "key": "weightGain",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Weight Gain (surplus, kcal)" },
+        "fr": { "label": "Objectif prise de masse (surplus, kcal)" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Calorie Calculator",
+      "slug": "calorie-calculator",
+      "metaDescription": "Estimate your daily calorie requirements. Calculate calories for weight maintenance, weight loss, and weight gain using activity multipliers.",
+      "intro": "A calorie calculator determines your Total Daily Energy Expenditure (TDEE), which is the total number of calories your body burns in a single 24-hour period based on your basal metabolic rate and daily movement. Understanding your caloric needs is vital for achieving weight-related fitness goals, such as burning fat or building muscle. By inputting your weight, height, age, biological gender, and typical activity level, the simulator projects your baseline maintenance calories. Eating this exact amount will keep your body weight constant. If you want to lose weight safely, you need to create a caloric deficit (for example, consuming 500 calories less than maintenance). Conversely, if you want to gain muscle, you require a caloric surplus. This tool provides clear guidelines for all three scenarios, helping you structure your meal plans and macronutrient counts effectively. By aligning your physical activity with your daily food choices, you can achieve your healthy weight targets efficiently.",
+      "methodology": "<p>This calculator estimates calorie requirements using the Harris-Benedict BMR base multiplied by activity coefficients:</p><ul><li><strong>Sedentary (no exercise):</strong> BMR &times; 1.2</li><li><strong>Lightly Active (1-3 days/week):</strong> BMR &times; 1.375</li><li><strong>Moderately Active (3-5 days/week):</strong> BMR &times; 1.55</li><li><strong>Active (6-7 days/week):</strong> BMR &times; 1.725</li><li><strong>Very Active (heavy physical labor/athletics):</strong> BMR &times; 1.9</li></ul><p>Weight loss values apply a standard deficit of 500 kcal (capped at a minimum of 1200 kcal/day for safety). Weight gain values apply a surplus of 500 kcal/day.</p>",
+      "faq": [
+        { "q": "How many calories should I cut to lose weight?", "a": "A deficit of 500 calories per day is generally recommended to lose about 0.5 kg (1 pound) of body weight per week safely." },
+        { "q": "What is the minimum safe daily calorie intake?", "a": "For safety, it is recommended not to consume less than 1,200 calories per day for women or 1,500 calories per day for men, unless supervised by a medical professional." },
+        { "q": "Do calories burned in exercise affect this calculation?", "a": "Yes. The activity level dropdown automatically factors in average exercise calories. If you work out intensely, choose the 'Active' or 'Very Active' option." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur de Calories",
+      "slug": "calculateur-de-calories",
+      "metaDescription": "Estimez vos besoins énergétiques journaliers. Calculez les calories nécessaires pour maintenir, perdre ou prendre du poids.",
+      "intro": "Un calculateur de calories estime vos besoins énergétiques journaliers totaux (DEJ ou TDEE), correspondant à la quantité d'énergie totale brûlée par votre corps sur 24 heures en combinant votre métabolisme de base et votre niveau d'activité physique. Maîtriser sa balance énergétique constitue le facteur fondamental pour réguler son poids de corps : maigrir requiert d'ingérer moins de calories que dépensées, alors que prendre du muscle nécessite un surplus d'énergie. En saisissant votre poids, votre taille, votre âge, votre genre et votre niveau d'exercice habituel, le simulateur calcule votre besoin de maintenance. Cet apport énergétique théorique vous permet de maintenir un poids constant. L'outil détaille également les apports recommandés pour initier une perte de poids progressive (déficit de 500 kcal) ou cibler une prise de masse saine. Grâce à cette vision globale de votre physiologie, vous pourrez adapter vos repas de manière autonome et durable. C'est l'outil parfait pour atteindre vos objectifs de santé, que vous soyez un athlète professionnel ou que vous cherchiez simplement à adopter un mode de vie plus sain et équilibré.",
+      "methodology": "<p>Ce calculateur estime vos besoins journaliers totaux en multipliant votre métabolisme de base (formule Harris-Benedict) par des coefficients d'activité physique :</p><ul><li><strong>Sédentaire (bureau) :</strong> TMB &times; 1,2</li><li><strong>Légèrement actif (1-3 fois/semaine) :</strong> TMB &times; 1,375</li><li><strong>Modérément actif (3-5 fois/semaine) :</strong> TMB &times; 1,55</li><li><strong>Très actif (6-7 fois/semaine) :</strong> TMB &times; 1,725</li><li><strong>Extrêmement actif (travail physique) :</strong> TMB &times; 1,9</li></ul><p>L'objectif de perte de poids applique un déficit recommandé de 500 kcal/jour (sécurisé avec un plancher minimal de 1200 kcal/jour). L'objectif de gain applique un surplus de 500 kcal/jour.</p>",
+      "faq": [
+        { "q": "Quel déficit calorique choisir pour perdre du poids ?", "a": "Un déficit de 500 kcal par jour est le standard recommandé pour perdre environ 0,5 kg par semaine de manière progressive et durable." },
+        { "q": "Quel est le seuil calorique minimal à ne pas dépasser ?", "a": "Il est déconseillé de descendre sous la barre des 1200 kcal/jour pour les femmes et 1500 kcal/jour pour les hommes afin d'éviter les carences et la fatigue extrême." },
+        { "q": "Faut-il modifier l'apport les jours sans entraînement ?", "a": "Le calcul lisse votre activité sur toute la semaine. Il est donc recommandé de maintenir un apport régulier plutôt que de faire de fortes variations quotidiennes." }
+      ]
+    }
+  },
+  "relatedTo": ["bmi-calculator", "bmr-calculator"],
+  "tags": ["health", "calories", "diet"]
+}

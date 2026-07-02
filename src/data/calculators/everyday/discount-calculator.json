@@ -1,0 +1,91 @@
+{
+  "slug": "discount-calculator",
+  "category": "everyday",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "discount-calculator",
+  "inputs": [
+    {
+      "key": "originalPrice",
+      "type": "number",
+      "min": 0,
+      "max": 1000000,
+      "step": 0.01,
+      "default": 100,
+      "translations": {
+        "en": { "label": "Original Price" },
+        "fr": { "label": "Prix d'origine" }
+      }
+    },
+    {
+      "key": "discountPercentage",
+      "type": "number",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 20,
+      "translations": {
+        "en": { "label": "Discount Percentage (%)" },
+        "fr": { "label": "Pourcentage de remise (%)" }
+      }
+    },
+    {
+      "key": "taxPercentage",
+      "type": "number",
+      "min": 0,
+      "max": 100,
+      "step": 0.1,
+      "default": 0,
+      "translations": {
+        "en": { "label": "Sales Tax (%, optional)" },
+        "fr": { "label": "TVA / Taxe (%, facultatif)" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "savings",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Savings" },
+        "fr": { "label": "Économie totale" }
+      }
+    },
+    {
+      "key": "finalPrice",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Final Price" },
+        "fr": { "label": "Prix final après remise" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Discount Calculator",
+      "slug": "discount-calculator",
+      "metaDescription": "Calculate savings and the final price after applying discounts and taxes. Perfect for sales, shopping, and retail bargains.",
+      "intro": "A discount calculator is a highly practical shopping utility designed to determine the final cost of an item on sale and compute the total amount of money you save. During seasonal sales, Black Friday events, or promotions, retailers list products with percentage markdowns, leaving customers to compute the final price mentally. By entering the original price of the product, the discount percentage, and any optional sales tax rates, this simulator computes the final price instantly. It details the exact savings in currency and outputs the final price after the discount is subtracted and tax is applied. This helper tool allows you to stick to your budget, compare deals, and verify that the checkout scanner registers the correct sale price. Having this calculator open while shopping ensures you always secure the absolute best value on all purchases. It reduces computational strain during your shopping trips, making bargains easier to identify. This online tool is designed for mobile responsiveness, meaning you can easily access it directly on your smartphone while browsing through retail stores.",
+      "methodology": "<p>This discount calculator applies percentage reductions and tax additions using linear algebra:</p><ul><li><strong>Savings:</strong> <code>Original Price * (Discount Percentage / 100)</code></li><li><strong>Discounted Price:</strong> <code>Original Price - Savings</code></li><li><strong>Tax Amount:</strong> <code>Discounted Price * (Tax Percentage / 100)</code></li><li><strong>Final Price:</strong> <code>Discounted Price + Tax Amount</code></li></ul><p>All calculations are rounded to the nearest two decimal places for currency accuracy.</p>",
+      "faq": [
+        { "q": "How do you calculate a 20% discount?", "a": "To find a 20% discount, multiply the original price by 0.2 to get the savings, then subtract that amount from the original price (or multiply by 0.8 directly)." },
+        { "q": "What is the difference between a discount and a markup?", "a": "A discount reduces the original price of a product by a specific percentage. A markup increases the wholesale cost of a product to determine its final retail selling price." },
+        { "q": "Can I apply multiple discounts with this tool?", "a": "This tool calculates single percentage discounts. If you have stacked discounts (like 20% off plus an extra 10%), apply the first discount, then input the result as the new original price." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur de Solde",
+      "slug": "calculateur-de-solde",
+      "metaDescription": "Calculez l'économie réalisée et le prix final après application d'une remise et de taxes. Idéal pour faire les soldes.",
+      "intro": "Un calculateur de solde (ou de remise) est un outil indispensable lors de vos sessions de shopping pour déterminer en temps réel le coût final d'un article soldé et évaluer le montant économisé. Pendant les périodes de soldes, le Black Friday ou lors d'offres promotionnelles, les étiquettes affichent des pourcentages de réduction, ce qui rend le calcul mental fatiguant. En indiquant le prix initial de l'article, la remise en pourcentage et une éventuelle taxe locale, le simulateur calcule le coût final. Il vous indique précisément l'économie que vous réalisez, vous aidant à respecter votre budget et à vérifier les tickets de caisse en magasin afin de repérer les meilleures opportunités d'achat sans aucune ambiguïté. De plus, cet outil vous permet d'anticiper vos dépenses et de comparer efficacement plusieurs promotions concurrentes pour optimiser votre pouvoir d'achat au quotidien. Grâce à cette ressource diététique simple d'utilisation, facilitez vos achats de manière immédiate et intelligente.",
+      "methodology": "<p>Ce calculateur applique la formule de réduction en pourcentage ainsi que le calcul de taxes :</p><ul><li><strong>Économie :</strong> <code>Prix d'origine * (Remise / 100)</code></li><li><strong>Prix remisé :</strong> <code>Prix d'origine - Économie</code></li><li><strong>Montant de la taxe :</strong> <code>Prix remisé * (Taux Taxe / 100)</code></li><li><strong>Prix final :</strong> <code>Prix remisé + Montant de la taxe</code></li></ul><p>Les résultats sont arrondis à deux décimales après la virgule.</p>",
+      "faq": [
+        { "q": "Comment calculer rapidement une réduction de 30 % ?", "a": "Pour estimer une réduction de 30 %, multipliez le prix par 3, divisez le résultat par 10 (ce qui donne l'économie), puis soustrayez ce montant du prix d'origine." },
+        { "q": "Peut-on cumuler deux démarques (ex: -30% puis -10%) ?", "a": "Les remises ne s'additionnent pas directement. Vous devez calculer la première remise (-30%), puis appliquer le second pourcentage (-10%) sur le prix obtenu intermédiaire." },
+        { "q": "Pourquoi inclure un champ de taxe facultatif ?", "a": "Dans certains pays comme le Canada ou les États-Unis, les taxes ne sont pas affichées sur l'étiquette. Ce champ permet d'obtenir le coût réel final." }
+      ]
+    }
+  },
+  "relatedTo": ["age-calculator", "tip-calculator"],
+  "tags": ["everyday", "discount", "shopping", "sales"]
+}

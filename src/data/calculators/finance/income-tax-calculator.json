@@ -1,0 +1,79 @@
+{
+  "slug": "income-tax-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "income-tax",
+  "inputs": [
+    {
+      "key": "taxableIncome",
+      "type": "number",
+      "min": 0,
+      "max": 2000000,
+      "step": 1000,
+      "default": 30000,
+      "translations": {
+        "en": { "label": "Annual Taxable Income (€)" },
+        "fr": { "label": "Revenu net imposable annuel (€)" }
+      }
+    },
+    {
+      "key": "householdParts",
+      "type": "number",
+      "min": 1,
+      "max": 10,
+      "step": 0.5,
+      "default": 1,
+      "translations": {
+        "en": { "label": "Household Tax Shares (Parts)" },
+        "fr": { "label": "Nombre de parts fiscales" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "incomeTax",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Estimated Income Tax" },
+        "fr": { "label": "Montant estimé de l'impôt" }
+      }
+    },
+    {
+      "key": "effectiveTaxRate",
+      "format": "percentage",
+      "translations": {
+        "en": { "label": "Effective Tax Rate" },
+        "fr": { "label": "Taux d'imposition moyen" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Income Tax Estimator (France)",
+      "slug": "income-tax-estimator-france",
+      "metaDescription": "Estimate your annual French personal income tax. Calculate progressive brackets and effective tax rates based on household parts.",
+      "intro": "An income tax calculator helps individuals in France estimate their annual personal income tax liabilities based on the official progressive tax bracket structure. The French taxation system is based on a progressive tax scale, meaning that as your income increases, it is taxed at progressively higher rates. For a single person (which represents 1 household share, or parts fiscales), income is divided into brackets, each subject to a different tax rate ranging from 0% up to 45% for high earners. To calculate your tax accurately, you must divide your total taxable income by the number of household parts (which adjust for spouses and dependent children), calculate the tax on that single share, and then multiply it back by the number of parts. This progressive mechanism protects lower-income households. Use this tool to input your annual salary and number of shares to get a quick estimate of your yearly income tax bill and your effective tax rate.",
+      "methodology": "<p>This calculator estimates income tax in France using the official progressive brackets for income earned:</p><ul><li><strong>Up to €11,600:</strong> 0%</li><li><strong>€11,601 to €29,579:</strong> 11%</li><li><strong>€29,580 to €84,577:</strong> 30%</li><li><strong>€84,578 to €181,917:</strong> 41%</li><li><strong>Above €181,917:</strong> 45%</li></ul><p>The calculation divides taxable income by household shares (parts fiscales) to compute quotient familial (Q). The progressive rates are applied to Q to calculate tax-per-part, which is then multiplied by the shares to obtain total tax. It does not include general tax deductions (décote) or child tax limits (plafonnement du quotient familial).</p>",
+      "faq": [
+        { "q": "What is the 'parts fiscales' system in France?", "a": "The 'parts' system determines your quotient familial. A single person has 1 part, a married couple has 2 parts, the first two children add 0.5 parts each, and the third child adds 1 full part. This helps reduce the tax burden for families." },
+        { "q": "What is the difference between marginal tax rate and effective tax rate?", "a": "Your marginal tax rate (TMI) is the rate applied to your highest euro of income (e.g., 30%). Your effective tax rate is the actual percentage of your total income paid in tax (e.g., 12%), which is lower because of progressive brackets." },
+        { "q": "How can I reduce my taxable income in France?", "a": "You can reduce your taxable income through retirement savings contributions (PER), employment of home helpers, donations to charitable organizations, or investing in tax-exempt real estate programs (Pinel)." }
+      ]
+    },
+    "fr": {
+      "title": "Estimateur d'Impôt sur le Revenu",
+      "slug": "estimateur-impot-sur-le-revenu",
+      "metaDescription": "Estimez le montant de votre impôt sur le revenu en France. Calculez votre taux moyen d'imposition et vos tranches de revenus.",
+      "intro": "Un estimateur d'impôt sur le revenu aide les contribuables en France à estimer leur impôt annuel basé sur le barème progressif officiel. Le système fiscal français repose sur un barème par tranches d'imposition : plus vos revenus sont élevés, plus le taux d'imposition applicable aux tranches supérieures augmente. Pour une personne seule (correspondant à 1 part fiscale), le revenu net imposable est réparti dans des tranches soumises à des taux allant de 0% à 45% pour les tranches les plus élevées. Afin de calculer l'impôt, on divise le revenu imposable par le nombre de parts du foyer fiscal (quotient familial), on applique le barème sur cette part unique, puis on multiplie le montant obtenu par le nombre total de parts. Ce simulateur vous permet de renseigner vos revenus annuels et vos parts familiales pour obtenir une estimation rapide de votre impôt et de votre taux d'imposition moyen. Ce calcul constitue une aide précieuse pour anticiper vos échéances fiscales futures ou planifier d'éventuels projets d'investissement défiscalisant comme les versements sur un plan d'épargne retraite.",
+      "methodology": "<p>Ce simulateur estime votre impôt sur le revenu en appliquant le barème progressif officiel par tranches de revenus :</p><ul><li><strong>Jusqu'à 11 600 € :</strong> 0%</li><li><strong>De 11 601 € à 29 579 € :</strong> 11%</li><li><strong>De 29 580 € à 84 577 € :</strong> 30%</li><li><strong>De 84 578 € à 181 917 € :</strong> 41%</li><li><strong>Au-delà de 181 917 € :</strong> 45%</li></ul><p>Le revenu net imposable est divisé par le nombre de parts fiscales pour calculer le quotient familial. Le barème progressif s'applique sur cette base, puis l'impôt brut est multiplié par le nombre de parts. Les mécanismes de décote ou de plafonnement des parts ne sont pas simulés.</p>",
+      "faq": [
+        { "q": "Comment obtenir des parts fiscales supplémentaires ?", "a": "Le nombre de parts dépend de votre situation familiale. Un célibataire a 1 part, un couple marié/pacsé a 2 parts. Les deux premiers enfants à charge apportent 0,5 part de plus chacun, et le troisième enfant apporte 1 part entière." },
+        { "q": "Qu'est-ce que le prélèvement à la source ?", "a": "C'est le mode de collecte de l'impôt sur le revenu en France, où l'impôt est directement prélevé par l'employeur sur le salaire net chaque mois, sur la base du taux transmis par l'administration fiscale." },
+        { "q": "Qu'est-ce que la tranche marginale d'imposition (TMI) ?", "a": "La TMI est le taux d'imposition le plus élevé appliqué à vos revenus. Si votre TMI est de 30%, cela signifie que chaque euro supplémentaire gagné sera taxé à 30%, bien que votre taux d'imposition global soit inférieur." }
+      ]
+    }
+  },
+  "relatedTo": ["gross-to-net-calculator", "vat-calculator", "capital-gains-calculator"],
+  "tags": ["taxes", "income", "finance"]
+}

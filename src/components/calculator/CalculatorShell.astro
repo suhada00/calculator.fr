@@ -1,0 +1,393 @@
+---
+import Card from '../ui/Card.astro';
+import Input from '../ui/Input.astro';
+import Select from '../ui/Select.astro';
+import { runFormula } from '../../lib/formulas/index';
+import { useTranslations } from '../../lib/i18n';
+
+interface InputDescriptor {
+  key: string;
+  type: 'number' | 'checkbox' | 'select';
+  min?: number;
+  max?: number;
+  step?: number;
+  default: any;
+  options?: Array<{ value: any; translations: Record<string, string> }>;
+  translations: Record<string, { label: string }>;
+}
+
+interface OutputDescriptor {
+  key: string;
+  format: 'currency' | 'percentage' | 'number';
+  translations: Record<string, { label: string }>;
+}
+
+interface Props {
+  formulaId: string;
+  locale: string;
+  inputs: InputDescriptor[];
+  outputs: OutputDescriptor[];
+}
+
+const { formulaId, locale, inputs, outputs } = Astro.props;
+const t = useTranslations(locale);
+
+// Pre-calculate server-side results for SEO and no-JS fallback
+const defaultInputValues: Record<string, any> = {};
+inputs.forEach((inp) => {
+  defaultInputValues[inp.key] = inp.default;
+});
+
+let serverResult: Record<string, any> = {};
+try {
+  serverResult = runFormula(formulaId, defaultInputValues);
+} catch (e) {
+  console.error('Error running formula on server', e);
+}
+
+// Generate unique shell ID to scope the JS logic
+const shellId = `calc-shell-${formulaId}`;
+
+// Format helper for server-side render
+const formatValueServer = (val: any, format: string) => {
+  if (typeof val !== 'number' || isNaN(val)) {
+    return val;
+  }
+  const formatter = new Intl.NumberFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
+    style: format === 'currency' ? 'currency' : 'decimal',
+    currency: 'EUR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  });
+
+  let formatted = formatter.format(val);
+  if (format === 'percentage') {
+    formatted = `${formatted}%`;
+  }
+  return formatted;
+};
+---
+
+<Card id={shellId} class="p-6 md:p-8" data-formula-id={formulaId} data-locale={locale}>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Left Panel: Inputs -->
+    <div class="space-y-6">
+      <h3 class="text-lg font-bold text-text-heading border-b border-border pb-2">
+        {locale === 'fr' ? 'Paramètres de calcul' : 'Calculator Inputs'}
+      </h3>
+      
+      <form class="space-y-5" onsubmit="return false;">
+        {inputs.map((inp) => {
+          const label = inp.translations[locale]?.label || inp.key;
+
+          if (inp.type === 'number') {
+            return (
+              <div class="space-y-2">
+                <!-- Numeric Input Box -->
+                <Input
+                  type="number"
+                  id={`${shellId}-${inp.key}`}
+                  label={label}
+                  value={inp.default}
+                  min={inp.min}
+                  max={inp.max}
+                  step={inp.step}
+                  class="calc-input"
+                  data-key={inp.key}
+                  data-type="number"
+                />
+                <!-- Synchronized Range Slider -->
+                <input
+                  type="range"
+                  id={`${shellId}-${inp.key}-slider`}
+                  min={inp.min}
+                  max={inp.max}
+                  step={inp.step}
+                  value={inp.default}
+                  class="w-full h-2 bg-neutral-100 dark:bg-neutral-100/10 rounded-lg appearance-none cursor-pointer accent-primary-500 py-4 calc-slider"
+                  data-buddy-id={`${shellId}-${inp.key}`}
+                />
+              </div>
+            );
+          }
+
+          if (inp.type === 'checkbox') {
+            return (
+              <div class="flex items-center gap-3 py-2">
+                <input
+                  type="checkbox"
+                  id={`${shellId}-${inp.key}`}
+                  checked={inp.default}
+                  class="h-6 w-6 rounded border-border text-primary-500 focus:ring-primary-500 cursor-pointer accent-primary-500 calc-input"
+                  data-key={inp.key}
+                  data-type="checkbox"
+                />
+                <label for={`${shellId}-${inp.key}`} class="text-sm font-semibold text-text-heading select-none cursor-pointer">
+                  {label}
+                </label>
+              </div>
+            );
+          }
+
+          if (inp.type === 'select') {
+            const selectOptions = inp.options?.map(opt => ({
+              value: opt.value,
+              label: opt.translations[locale] || String(opt.value),
+              selected: opt.value === inp.default
+            })) || [];
+
+            return (
+              <Select
+                id={`${shellId}-${inp.key}`}
+                label={label}
+                options={selectOptions}
+                class="calc-input"
+                data-key={inp.key}
+                data-type="select"
+              />
+            );
+          }
+
+          if (inp.type === 'date') {
+            return (
+              <Input
+                type="date"
+                id={`${shellId}-${inp.key}`}
+                label={label}
+                value={inp.default}
+                class="calc-input"
+                data-key={inp.key}
+                data-type="date"
+              />
+            );
+          }
+          return null;
+        })}
+      </form>
+    </div>
+
+    <!-- Right Panel: Outputs -->
+    <div class="bg-surface-alt border border-border rounded-lg p-6 flex flex-col justify-between">
+      <div>
+        <h3 class="text-lg font-bold text-text-heading border-b border-border/50 pb-2 mb-6">
+          {t('results')}
+        </h3>
+        
+        <div class="space-y-6">
+          {outputs.map((out) => {
+            const label = out.translations[locale]?.label || out.key;
+            const displayVal = serverResult[out.key] !== undefined ? serverResult[out.key] : 0;
+            const formattedVal = formatValueServer(displayVal, out.format);
+
+            return (
+              <div class="flex flex-col border-b border-border/30 pb-4 last:border-0 last:pb-0">
+                <span class="text-sm text-text-muted mb-1 font-medium">{label}</span>
+                <span 
+                  id={`${shellId}-out-${out.key}`} 
+                  class="text-2xl md:text-3xl font-extrabold text-primary-500 tracking-tight calc-output"
+                  data-key={out.key}
+                  data-format={out.format}
+                >
+                  {formattedVal}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- No-JS disclaimer / information signal -->
+      <div class="mt-8 pt-4 border-t border-border/50 flex items-start gap-2 text-xs text-text-muted">
+        <svg class="w-4 h-4 text-primary-500 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="leading-relaxed">
+          {t('exampleResultLabel')}
+        </p>
+      </div>
+    </div>
+  </div>
+</Card>
+
+<!-- Mobile Sticky Results Bar -->
+{outputs[0] && (
+  <div 
+    id={`${shellId}-mobile-bar`}
+    class="fixed bottom-0 left-0 right-0 md:hidden bg-surface/95 backdrop-blur-md border-t border-border/80 px-5 py-3 shadow-lg z-40 flex items-center justify-between transform translate-y-full opacity-0 transition-all duration-300"
+  >
+    <div class="flex flex-col">
+      <span class="text-xs text-text-muted font-medium">
+        {outputs[0].translations[locale]?.label || outputs[0].key}
+      </span>
+      <span 
+        id={`${shellId}-mobile-primary-out`}
+        class="text-xl font-extrabold text-primary-500 tracking-tight"
+      >
+        {formatValueServer(serverResult[outputs[0].key] || 0, outputs[0].format)}
+      </span>
+    </div>
+    <button 
+      id={`${shellId}-mobile-scroll-btn`}
+      class="bg-primary-500 hover:bg-primary-600 text-white font-bold text-xs px-4 py-2 rounded-md transition-colors cursor-pointer"
+    >
+      {locale === 'fr' ? 'Détails' : 'Details'}
+    </button>
+  </div>
+)}
+
+<script>
+  // Client-side hydration and calculation loop
+  import { runFormula } from '../../lib/formulas/index';
+
+  function initCalculator(shellId: string) {
+    const shell = document.getElementById(shellId);
+    if (!shell) return;
+
+    const formulaId = shell.getAttribute('data-formula-id') || '';
+    const locale = shell.getAttribute('data-locale') || 'en';
+
+    const inputs = shell.querySelectorAll('input[data-key], select[data-key]');
+    const sliders = shell.querySelectorAll('.calc-slider');
+    const outputs = shell.querySelectorAll('.calc-output');
+
+    // Locale aware number formatter
+    const numberFormatter = new Intl.NumberFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    });
+
+    const currencyFormatter = new Intl.NumberFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    });
+
+    const formatValue = (val: any, format: string) => {
+      if (typeof val !== 'number' || isNaN(val)) {
+        return val;
+      }
+      if (format === 'currency') {
+        return currencyFormatter.format(val);
+      }
+      const formatted = numberFormatter.format(val);
+      if (format === 'percentage') {
+        return `${formatted}%`;
+      }
+      return formatted;
+    };
+
+    const getInputs = () => {
+      const values: Record<string, any> = {};
+      
+      inputs.forEach((inputEl: any) => {
+        const key = inputEl.getAttribute('data-key');
+        const type = inputEl.getAttribute('data-type');
+        
+        if (type === 'number') {
+          values[key] = parseFloat(inputEl.value) || 0;
+        } else if (type === 'checkbox') {
+          values[key] = inputEl.checked;
+        } else if (type === 'select') {
+          values[key] = inputEl.value;
+        } else {
+          values[key] = inputEl.value;
+        }
+      });
+      
+      return values;
+    };
+
+    const update = () => {
+      try {
+        const currentInputs = getInputs();
+        const results = runFormula(formulaId, currentInputs);
+        
+        outputs.forEach((outEl: any) => {
+          const key = outEl.getAttribute('data-key');
+          const format = outEl.getAttribute('data-format');
+          const value = results[key] !== undefined ? results[key] : 0;
+          outEl.textContent = formatValue(value, format);
+        });
+
+        // Update mobile floating bar primary value
+        const mobileOut = document.getElementById(`${shellId}-mobile-primary-out`);
+        if (mobileOut && outputs[0]) {
+          const primaryKey = outputs[0].getAttribute('data-key');
+          const primaryFormat = outputs[0].getAttribute('data-format');
+          const primaryValue = results[primaryKey] !== undefined ? results[primaryKey] : 0;
+          mobileOut.textContent = formatValue(primaryValue, primaryFormat);
+        }
+      } catch (err) {
+        console.error('Calculation error:', err);
+      }
+    };
+
+    // Attach listeners to input fields
+    inputs.forEach((inputEl: any) => {
+      inputEl.addEventListener('input', () => {
+        // If it's a number field, synchronize its slider buddy
+        if (inputEl.getAttribute('data-type') === 'number') {
+          const slider = shell.querySelector(`[data-buddy-id="${inputEl.id}"]`) as HTMLInputElement;
+          if (slider) {
+            slider.value = inputEl.value;
+          }
+        }
+        update();
+      });
+
+      inputEl.addEventListener('change', update);
+    });
+
+    // Attach listeners to sliders
+    sliders.forEach((sliderEl: HTMLInputElement) => {
+      sliderEl.addEventListener('input', () => {
+        const buddyId = sliderEl.getAttribute('data-buddy-id') || '';
+        const buddyInput = document.getElementById(buddyId) as HTMLInputElement;
+        if (buddyInput) {
+          buddyInput.value = sliderEl.value;
+        }
+        update();
+      });
+    });
+
+    // Click to scroll to detailed results on mobile
+    const scrollBtn = document.getElementById(`${shellId}-mobile-scroll-btn`);
+    if (scrollBtn && outputs[0]) {
+      const targetOutId = `${shellId}-out-${outputs[0].getAttribute('data-key')}`;
+      const targetOut = document.getElementById(targetOutId);
+      scrollBtn.addEventListener('click', () => {
+        if (targetOut) {
+          targetOut.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
+
+    // Toggle mobile floating bar visibility based on detailed results visibility
+    const mobileBar = document.getElementById(`${shellId}-mobile-bar`);
+    const resultsPanel = shell.querySelector('.bg-surface-alt');
+    if (mobileBar && resultsPanel) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            mobileBar.classList.add('translate-y-full', 'opacity-0');
+          } else {
+            mobileBar.classList.remove('translate-y-full', 'opacity-0');
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(resultsPanel);
+    }
+
+    // Run initial update to align everything
+    update();
+  }
+
+  // Hydrate all calculator shells on the page
+  document.addEventListener('DOMContentLoaded', () => {
+    const shells = document.querySelectorAll('[data-formula-id]');
+    shells.forEach((shell) => {
+      initCalculator(shell.id);
+    });
+  });
+</script>

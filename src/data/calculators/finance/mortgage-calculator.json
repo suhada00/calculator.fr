@@ -1,0 +1,99 @@
+{
+  "slug": "mortgage-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "mortgage-amortization",
+  "inputs": [
+    {
+      "key": "loanAmount",
+      "type": "number",
+      "min": 5000,
+      "max": 2000000,
+      "step": 5000,
+      "default": 250000,
+      "translations": {
+        "en": { "label": "Loan Amount (€)" },
+        "fr": { "label": "Montant de l'emprunt (€)" }
+      }
+    },
+    {
+      "key": "interestRate",
+      "type": "number",
+      "min": 0.1,
+      "max": 15,
+      "step": 0.05,
+      "default": 3.5,
+      "translations": {
+        "en": { "label": "Annual Interest Rate (%)" },
+        "fr": { "label": "Taux d'intérêt annuel (%)" }
+      }
+    },
+    {
+      "key": "termYears",
+      "type": "number",
+      "min": 1,
+      "max": 35,
+      "step": 1,
+      "default": 20,
+      "translations": {
+        "en": { "label": "Loan Term (years)" },
+        "fr": { "label": "Durée de l'emprunt (années)" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "monthlyPayment",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Monthly Payment" },
+        "fr": { "label": "Mensualité de remboursement" }
+      }
+    },
+    {
+      "key": "totalInterest",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Interest" },
+        "fr": { "label": "Coût total des intérêts" }
+      }
+    },
+    {
+      "key": "totalPayment",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Repayment" },
+        "fr": { "label": "Remboursement total" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Mortgage Calculator",
+      "slug": "mortgage-calculator",
+      "metaDescription": "Calculate your monthly mortgage payments with our easy-to-use simulator. Get detailed amortization tables and total interest estimation.",
+      "intro": "A mortgage calculator is an essential financial tool designed to help home buyers determine their prospective monthly mortgage payments. By entering key variables such as the total loan amount, the annual interest rate, and the duration of the loan term, you can instantly see how much you will pay each month in interest and principal. This calculation enables you to understand your budget and set realistic price ranges when shopping for real estate. In addition to estimating your monthly out-of-pocket costs, this tool calculates the total cost of the credit, which is the sum of all interest payments made over the life of the loan. Understanding this figure is critical because it reveals the true cost of borrowing money. Before you make one of the largest financial commitments of your life, use this simulator to test different interest rate scenarios and amortization lengths, ensuring you choose a loan structure that matches your long-term wealth goals.",
+      "methodology": "<p>This mortgage calculator uses the standard amortization formula:</p><p class='font-mono bg-surface-alt p-3 rounded border border-border my-2'>M = P [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]</p><p>Where <strong>M</strong> is the monthly payment, <strong>P</strong> is the principal loan amount, <strong>r</strong> is the monthly interest rate (annual rate divided by 12 months, expressed as a decimal), and <strong>n</strong> is the total number of payments (loan term in years multiplied by 12 months). This formula determines the exact fixed monthly payment required to pay down the interest and principal over the lifetime of the loan.</p>",
+      "faq": [
+        { "q": "What is mortgage amortization?", "a": "Amortization is the process of spreading out a loan into a series of equal periodic payments. As time goes on, a higher percentage of your payment goes toward principal rather than interest." },
+        { "q": "Does this calculator include home insurance?", "a": "No, this calculator focuses strictly on interest and principal. Insurance, property taxes, and other regional fees are excluded." },
+        { "q": "How can I lower my monthly payments?", "a": "You can lower your monthly payments by securing a lower interest rate, extending the term of the loan, or raising your initial down payment." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur Prêt Immobilier",
+      "slug": "calculateur-pret-immobilier",
+      "metaDescription": "Estimez vos mensualités de crédit immobilier et le coût total de votre emprunt. Simple, rapide et gratuit.",
+      "intro": "Un calculateur de prêt immobilier est un outil financier indispensable conçu pour aider les futurs acheteurs à estimer leurs mensualités de remboursement. En renseignant des variables clés comme le capital emprunté, le taux d'intérêt annuel et la durée de l'emprunt en années, vous visualisez instantanément le montant de votre échéance mensuelle. Ce calcul vous permet de définir précisément votre budget et de cibler des biens immobiliers correspondant à votre capacité financière réelle. En plus d'évaluer votre mensualité de base, ce simulateur estime le coût total du crédit, c'est-à-dire la somme cumulée de tous les intérêts que vous verserez à la banque sur toute la durée du prêt. Comprendre ce montant est crucial, car il illustre l'impact réel des taux sur le coût final de votre acquisition immobilière. Avant de vous engager dans un investissement aussi important, réalisez plusieurs simulations pour comparer l'effet des différentes durées de prêt sur votre endettement futur.",
+      "methodology": "<p>Ce calculateur de prêt utilise la formule d'amortissement standard :</p><p class='font-mono bg-surface-alt p-3 rounded border border-border my-2'>M = P [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]</p><p>Où <strong>M</strong> correspond à la mensualité, <strong>P</strong> est le capital emprunté, <strong>r</strong> est le taux d'intérêt mensuel (taux annuel divisé par 12, exprimé sous forme décimale), et <strong>n</strong> représente le nombre total de mensualités (durée du prêt en années multipliée par 12). Cette formule permet de calculer l'échéance fixe nécessaire pour rembourser les intérêts et le capital emprunté.</p>",
+      "faq": [
+        { "q": "Comment est calculée la mensualité d'un crédit immobilier ?", "a": "La mensualité est calculée à l'aide d'une formule standard d'amortissement prenant en compte le capital, la durée en mois et le taux d'intérêt annuel converti en mensuel." },
+        { "q": "Les frais de notaire sont-ils inclus dans le calcul ?", "a": "Non, ce simulateur se concentre uniquement sur le crédit de base. Pour les frais d'acquisition, utilisez notre calculateur de frais de notaire dédié." },
+        { "q": "Puis-je modifier la durée de remboursement ?", "a": "Oui, vous pouvez faire varier la durée de 1 à 35 ans pour observer l'impact direct sur vos mensualités de remboursement." }
+      ]
+    }
+  },
+  "relatedTo": ["loan-repayment", "notary-fees", "rent-vs-buy"],
+  "tags": ["mortgage", "real-estate", "loan"]
+}

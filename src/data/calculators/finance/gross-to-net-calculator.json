@@ -1,0 +1,89 @@
+{
+  "slug": "gross-to-net-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "gross-to-net",
+  "inputs": [
+    {
+      "key": "grossSalary",
+      "type": "number",
+      "min": 1000,
+      "max": 500000,
+      "step": 1000,
+      "default": 40000,
+      "translations": {
+        "en": { "label": "Gross Salary (€)" },
+        "fr": { "label": "Salaire brut (€)" }
+      }
+    },
+    {
+      "key": "isCadre",
+      "type": "checkbox",
+      "default": false,
+      "translations": {
+        "en": { "label": "Executive Status (Cadre)" },
+        "fr": { "label": "Statut Cadre" }
+      }
+    },
+    {
+      "key": "period",
+      "type": "select",
+      "default": "annual",
+      "options": [
+        { "value": "monthly", "translations": { "en": "Monthly", "fr": "Mensuel" } },
+        { "value": "annual", "translations": { "en": "Annual", "fr": "Annuel" } }
+      ],
+      "translations": {
+        "en": { "label": "Salary Period" },
+        "fr": { "label": "Période de salaire" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "netSalary",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Net Salary" },
+        "fr": { "label": "Salaire Net Estimé" }
+      }
+    },
+    {
+      "key": "contributions",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Social Contributions" },
+        "fr": { "label": "Cotisations Sociales Salariales" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Gross to Net Salary Calculator",
+      "slug": "gross-to-net-calculator",
+      "metaDescription": "Convert your gross salary into net take-home pay for France. Easy gross-to-net conversion for private sector employees and cadres.",
+      "intro": "An annual gross-to-net salary calculator is an invaluable resource for employees, job seekers, and recruiters looking to understand net income from a gross salary figure. When negotiating a salary for a new job or reviewing an annual pay raise, the headline figure is almost always expressed in gross terms (before taxes and social security contributions). However, what actually matters for your household budget is your net take-home pay, which is the money deposited directly into your bank account. In France, the difference between gross and net salary is determined by employee social contributions, which fund healthcare, pensions, family benefits, and unemployment insurance. For non-executive workers (non-cadres), social contributions typically amount to approximately 22% of the gross salary. For executive employees (cadres), this rate is slightly higher, averaging around 25% due to additional retirement and pension scheme contributions. Use this tool to instantly translate your gross salary into an estimated net figure.",
+      "methodology": "<p>This calculator performs a standard gross-to-net deduction mapping for private-sector employees in France:</p><ul><li><strong>Non-Cadre status:</strong> Deducts an average rate of 22% for employee social security and retirement contributions.</li><li><strong>Cadre status:</strong> Deducts an average rate of 25% to account for additional executive pension schemes and mandatory health premiums.</li></ul><p>Formula used: <code>Net Salary = Gross Salary * (1 - Contribution Rate)</code>. Note that this calculator represents an estimate of social contributions and does not include individual income tax withholding (prélèvement à la source), which depends on your specific household tax profile.</p>",
+      "faq": [
+        { "q": "What is the difference between gross and net salary?", "a": "Gross salary is the total compensation before any deductions, while net salary is the actual amount paid to the employee after social security contributions and retirement funds are deducted." },
+        { "q": "Why is the deduction rate higher for Cadres in France?", "a": "Cadres (executive status) have higher deduction rates (typically ~25% instead of ~22%) because they pay into additional executive pension funds (AGIRC-ARRCO) and mandatory life insurance systems." },
+        { "q": "Does this calculation include withholding tax (prélèvement à la source)?", "a": "No, this simulator converts gross to net social salary (salaire net avant impôt). The withholding tax rate varies from person to person depending on their overall household tax brackets." }
+      ]
+    },
+    "fr": {
+      "title": "Calculateur de Salaire Brut en Net",
+      "slug": "calculateur-salaire-brut-en-net",
+      "metaDescription": "Convertissez votre salaire brut en net en quelques clics. Simulation gratuite pour cadres et non-cadres du secteur privé en France.",
+      "intro": "Un calculateur de salaire brut en net est un outil indispensable pour les salariés, les demandeurs d'emploi et les recruteurs afin de déterminer le revenu net réel à partir d'un montant brut. Lors de la négociation d'une rémunération pour un nouveau poste ou d'une demande d'augmentation, les salaires sont presque toujours exprimés en brut. Pourtant, ce qui compte réellement pour votre pouvoir d'achat au quotidien est le salaire net de charges, c'est-à-dire la somme finale versée sur votre compte bancaire. En France, l'écart entre le brut et le net correspond aux cotisations sociales salariales destinées à financer la sécurité sociale, la retraite, l'assurance chômage et la prévoyance. Pour un salarié non-cadre du secteur privé, le taux moyen de ces cotisations représente environ 22% du salaire brut. Pour un statut cadre, ce taux est d'environ 25% en raison de cotisations spécifiques supplémentaires. Ce simulateur vous permet d'effectuer cette conversion de manière instantanée et fiable.",
+      "methodology": "<p>Ce convertisseur applique les taux moyens de cotisations salariales en vigueur en France pour le secteur privé :</p><ul><li><strong>Statut Non-Cadre :</strong> Déduction forfaitaire moyenne de 22% sur le salaire brut.</li><li><strong>Statut Cadre :</strong> Déduction moyenne de 25% en raison des cotisations de retraite complémentaire et de prévoyance obligatoires.</li></ul><p>Formule : <code>Salaire Net = Salaire Brut * (1 - Taux de cotisation)</code>. Attention, ce montant correspond au salaire net avant impôt sur le revenu. Le prélèvement à la source n'est pas déduit ici car il dépend du taux personnalisé de votre foyer fiscal.</p>",
+      "faq": [
+        { "q": "Quelle est la différence entre le salaire brut et le salaire net ?", "a": "Le salaire brut est le montant dû au titre du contrat de travail avant déductions. Le salaire net est la somme réellement perçue par le salarié après prélèvement des cotisations sociales obligatoires." },
+        { "q": "Pourquoi les cadres paient-ils plus de charges ?", "a": "Les cadres ont un taux de charges plus élevé (~25%) car ils cotisent à des régimes complémentaires spécifiques de retraite et à des garanties de prévoyance obligatoires supplémentaires." },
+        { "q": "Le prélèvement à la source est-il pris en compte ?", "a": "Ce calculateur fournit le salaire net social (net avant impôt). Il ne déduit pas le prélèvement à la source, qui dépend du taux d'imposition propre à chaque contribuable." }
+      ]
+    }
+  },
+  "relatedTo": ["income-tax", "vat-calculator", "retirement-projection"],
+  "tags": ["salary", "job", "taxes"]
+}

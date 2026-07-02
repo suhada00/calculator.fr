@@ -1,0 +1,74 @@
+---
+interface Props {
+  label?: string;
+  type?: 'text' | 'number' | 'email' | 'tel' | 'range' | 'checkbox' | 'date';
+  id: string;
+  name?: string;
+  value?: string | number;
+  placeholder?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  class?: string;
+  error?: string;
+  required?: boolean;
+  [key: string]: any;
+}
+
+const {
+  label,
+  type = 'text',
+  id,
+  name,
+  value,
+  placeholder,
+  min,
+  max,
+  step,
+  class: className = '',
+  error,
+  required = false,
+  ...rest
+} = Astro.props;
+
+const isRange = type === 'range';
+const isCheckbox = type === 'checkbox';
+
+const baseInputStyles = 'w-full bg-surface border border-border rounded-md px-4 py-2 text-text-heading text-body placeholder:text-text-muted focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 disabled:opacity-50 transition-all h-11';
+const checkboxStyles = 'h-6 w-6 rounded border-border text-primary-500 focus:ring-primary-500 cursor-pointer accent-primary-500';
+const rangeStyles = 'w-full h-2 bg-neutral-100 dark:bg-neutral-100/10 rounded-lg appearance-none cursor-pointer accent-primary-500 py-4'; // Added padding for slider touch area
+---
+
+<div class:list={["flex flex-col gap-1.5 w-full", className]}>
+  {label && (
+    <label for={id} class="text-sm font-semibold text-text-heading flex justify-between items-center select-none">
+      <span>{label}{required && <span class="text-danger-500 ml-0.5">*</span>}</span>
+      {isRange && <span class="text-xs text-text-muted font-normal" id={`${id}-val`}>{value}</span>}
+    </label>
+  )}
+  
+  <input
+    type={type}
+    id={id}
+    name={name || id}
+    value={value}
+    placeholder={placeholder}
+    min={min}
+    max={max}
+    step={step}
+    required={required}
+    aria-invalid={error ? 'true' : 'false'}
+    aria-describedby={error ? `${id}-error` : undefined}
+    class:list={[
+      isCheckbox ? checkboxStyles : isRange ? rangeStyles : baseInputStyles,
+      error ? 'border-danger-500 focus:border-danger-500 focus:ring-danger-500' : ''
+    ]}
+    {...rest}
+  />
+  
+  {error && (
+    <span id={`${id}-error`} class="text-xs text-danger-500 font-medium mt-0.5">
+      {error}
+    </span>
+  )}
+</div>

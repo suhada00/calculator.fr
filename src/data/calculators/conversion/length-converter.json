@@ -1,0 +1,97 @@
+{
+  "slug": "length-converter",
+  "category": "conversion",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "length-converter",
+  "inputs": [
+    {
+      "key": "value",
+      "type": "number",
+      "min": 0,
+      "max": 10000000,
+      "step": 0.01,
+      "default": 10,
+      "translations": {
+        "en": { "label": "Value to Convert" },
+        "fr": { "label": "Valeur à convertir" }
+      }
+    },
+    {
+      "key": "fromUnit",
+      "type": "select",
+      "default": "m",
+      "options": [
+        { "value": "m", "translations": { "en": "Meters (m)", "fr": "Mètres (m)" } },
+        { "value": "cm", "translations": { "en": "Centimeters (cm)", "fr": "Centimètres (cm)" } },
+        { "value": "mm", "translations": { "en": "Millimeters (mm)", "fr": "Millimètres (mm)" } },
+        { "value": "km", "translations": { "en": "Kilometers (km)", "fr": "Kilomètres (km)" } },
+        { "value": "in", "translations": { "en": "Inches (in)", "fr": "Pouces (in)" } },
+        { "value": "ft", "translations": { "en": "Feet (ft)", "fr": "Pieds (ft)" } },
+        { "value": "yd", "translations": { "en": "Yards (yd)", "fr": "Yards (yd)" } },
+        { "value": "mi", "translations": { "en": "Miles (mi)", "fr": "Miles (mi)" } }
+      ],
+      "translations": {
+        "en": { "label": "From Unit" },
+        "fr": { "label": "De l'unité" }
+      }
+    },
+    {
+      "key": "toUnit",
+      "type": "select",
+      "default": "ft",
+      "options": [
+        { "value": "m", "translations": { "en": "Meters (m)", "fr": "Mètres (m)" } },
+        { "value": "cm", "translations": { "en": "Centimeters (cm)", "fr": "Centimètres (cm)" } },
+        { "value": "mm", "translations": { "en": "Millimeters (mm)", "fr": "Millimètres (mm)" } },
+        { "value": "km", "translations": { "en": "Kilometers (km)", "fr": "Kilomètres (km)" } },
+        { "value": "in", "translations": { "en": "Inches (in)", "fr": "Pouces (in)" } },
+        { "value": "ft", "translations": { "en": "Feet (ft)", "fr": "Pieds (ft)" } },
+        { "value": "yd", "translations": { "en": "Yards (yd)", "fr": "Yards (yd)" } },
+        { "value": "mi", "translations": { "en": "Miles (mi)", "fr": "Miles (mi)" } }
+      ],
+      "translations": {
+        "en": { "label": "To Unit" },
+        "fr": { "label": "Vers l'unité" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "convertedValue",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Converted Length" },
+        "fr": { "label": "Longueur convertie" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Length Converter",
+      "slug": "length-converter",
+      "metaDescription": "Convert lengths and distances instantly. Supports Metric and Imperial units including meters, centimeters, feet, inches, and miles.",
+      "intro": "A length converter is a utility tool designed to translate measurements between different units of distance and length. Because global standards vary, international commerce, science, and travel require frequent length adjustments between the Metric system (used in continental Europe) and the Imperial system (prevalent in the US and UK). By entering your base value and selecting the starting and target units, you can calculate the exact converted distance. This tool supports various scales, ranging from small measurements like millimeters and inches, up to larger geographic distances like kilometers and miles. Relying on accurate mathematical scaling factors, the simulator ensures high-precision conversions. This resource is helpful for engineers, students, woodworkers, and travelers who need to understand dimensions and distances in localized units without manual math. Using this simple digital tool ensures that your calculations remain completely error-free and highly reliable across all projects. You can easily share results or use them directly in your professional work without having to double-check using complicated equations.",
+      "methodology": "<p>This length converter maps all inputs to a base unit of meters (m), then scales to the target unit:</p><ul><li><strong>Metric to Base:</strong> cm (0.01m), mm (0.001m), km (1000m)</li><li><strong>Imperial to Base:</strong> in (0.0254m), ft (0.3048m), yd (0.9144m), mi (1609.344m)</li></ul><p>Formula used: <code>Target = (Value * Base Rate From) / Base Rate To</code>. Results are rounded to 4 decimal places of accuracy.</p>",
+      "faq": [
+        { "q": "How many centimeters are in an inch?", "a": "There are exactly 2.54 centimeters in one inch. This factor is the international standard conversion rate." },
+        { "q": "What is the difference between Metric and Imperial units?", "a": "The Metric system uses decimal multiples (meters, centimeters, kilometers). The Imperial system is base-based on historically standard sizes (inches, feet, yards, miles)." },
+        { "q": "How do you convert miles to kilometers?", "a": "To convert miles to kilometers, multiply the mile value by approximately 1.6093. One kilometer is roughly 0.6214 miles." }
+      ]
+    },
+    "fr": {
+      "title": "Convertisseur de Longueur",
+      "slug": "convertisseur-de-longueur",
+      "metaDescription": "Convertissez des longueurs et distances instantanément. Raccordez le système métrique et impérial (mètres, pieds, pouces, miles).",
+      "intro": "Un convertisseur de longueur est un outil utilitaire conçu pour transcrire instantanément des mesures de distance d'une unité de mesure à une autre. La diversité des systèmes de mesure mondiaux nécessite de passer fréquemment des unités du système métrique (mètres, centimètres, kilomètres) aux unités anglo-saxonnes ou impériales (pouces, pieds, yards, miles) utilisées pour les dimensions de matériel informatique ou l'ingénierie internationale. En saisissant la valeur d'origine et en choisissant les unités de départ et d'arrivée, vous obtenez le résultat exact. Le simulateur intègre des coefficients de conversion précis pour vous garantir une fiabilité totale, que ce soit pour des petits formats ou des distances géographiques. Cet outil constitue une aide précieuse pour les étudiants, bricoleurs ou ingénieurs qui collaborent avec des clients étrangers ou lisent des plans techniques rédigés selon d'autres standards physiques mondiaux. Grâce à notre interface simple et dynamique, vous gagnez du temps et évitez les erreurs d'inattention fatales.",
+      "methodology": "<p>Ce convertisseur de longueur normalise les valeurs saisies en les traduisant en mètres, puis applique le ratio de l'unité cible :</p><ul><li><strong>Système Métrique :</strong> cm (0,01 m), mm (0,001 m), km (1000 m)</li><li><strong>Système Impérial :</strong> in (0,0254 m), ft (0,3048 m), yd (0,9144 m), mi (1609,344 m)</li></ul><p>Relation appliquée : <code>Résultat = (Valeur * Ratio Source) / Ratio Cible</code>. La valeur obtenue est arrondie à 4 décimales de précision.</p>",
+      "faq": [
+        { "q": "Combien de centimètres compte un pouce ?", "a": "Un pouce (inch) correspond exactement à 2,54 centimètres selon la norme internationale de métrologie." },
+        { "q": "Comment convertir des kilomètres en miles ?", "a": "Pour obtenir la distance en miles, multipliez la valeur en kilomètres par 0,6214. Inversement, 1 mile vaut environ 1,609 km." },
+        { "q": "Pourquoi le système impérial est-il toujours utilisé ?", "a": "Le système impérial reste le standard officiel aux États-Unis et est profondément ancré dans plusieurs industries mondiales comme l'aéronautique et l'affichage d'écrans." }
+      ]
+    }
+  },
+  "relatedTo": ["weight-converter", "temperature-converter"],
+  "tags": ["conversion", "length", "metric", "imperial"]
+}

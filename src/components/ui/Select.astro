@@ -1,0 +1,58 @@
+---
+interface Props {
+  label?: string;
+  id: string;
+  name?: string;
+  class?: string;
+  error?: string;
+  required?: boolean;
+  options: Array<{ value: string | number; label: string; selected?: boolean }>;
+  [key: string]: any;
+}
+
+const {
+  label,
+  id,
+  name,
+  class: className = '',
+  error,
+  required = false,
+  options = [],
+  ...rest
+} = Astro.props;
+
+const baseSelectStyles = 'w-full bg-surface border border-border rounded-md px-4 py-2 text-text-heading text-body placeholder:text-text-muted focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 disabled:opacity-50 transition-all h-11 appearance-none bg-[url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20fill%3D%27none%27%20viewBox%3D%270%200%2020%2020%27%3E%3Cpath%20stroke%3D%27%236b7280%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%20stroke-width%3D%271.5%27%20d%3D%27m6%208%204%204%204-4%27%2F%3E%3C%2Fsvg%3E")] bg-[position:right_0.75rem_center] bg-[size:1.25rem_1.25rem] bg-no-repeat pr-10 cursor-pointer';
+---
+
+<div class:list={["flex flex-col gap-1.5 w-full", className]}>
+  {label && (
+    <label for={id} class="text-sm font-semibold text-text-heading select-none">
+      {label}{required && <span class="text-danger-500 ml-0.5">*</span>}
+    </label>
+  )}
+  
+  <select
+    id={id}
+    name={name || id}
+    required={required}
+    aria-invalid={error ? 'true' : 'false'}
+    aria-describedby={error ? `${id}-error` : undefined}
+    class:list={[
+      baseSelectStyles,
+      error ? 'border-danger-500 focus:border-danger-500 focus:ring-danger-500' : ''
+    ]}
+    {...rest}
+  >
+    {options.map((opt) => (
+      <option value={opt.value} selected={opt.selected}>
+        {opt.label}
+      </option>
+    ))}
+  </select>
+  
+  {error && (
+    <span id={`${id}-error`} class="text-xs text-danger-500 font-medium mt-0.5">
+      {error}
+    </span>
+  )}
+</div>

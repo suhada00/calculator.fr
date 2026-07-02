@@ -1,0 +1,113 @@
+---
+interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  breadcrumbs?: BreadcrumbItem[];
+  calculator?: {
+    name: string;
+    description: string;
+    url: string;
+    category: string;
+  };
+  faqs?: FaqItem[];
+  article?: {
+    title: string;
+    description: string;
+    pubDate: Date | string;
+    author: string;
+    url: string;
+  };
+}
+
+const { breadcrumbs, calculator, faqs, article } = Astro.props;
+
+const siteUrl = Astro.site?.origin || 'https://www.eurocalc.eu';
+
+const articleSchema = article && {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  'headline': article.title,
+  'description': article.description,
+  'datePublished': new Date(article.pubDate).toISOString(),
+  'author': {
+    '@type': 'Person',
+    'name': article.author
+  },
+  'publisher': {
+    '@type': 'Organization',
+    'name': 'EuroCalc',
+    'logo': {
+      '@type': 'ImageObject',
+      'url': new URL('/favicon.svg', siteUrl).toString()
+    }
+  },
+  'mainEntityOfPage': {
+    '@type': 'WebPage',
+    '@id': article.url.startsWith('http') ? article.url : new URL(article.url, siteUrl).toString().replace(/\/$/, '') + '/'
+  }
+};
+
+const breadcrumbSchema = breadcrumbs && {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': breadcrumbs.map((crumb, idx) => ({
+    '@type': 'ListItem',
+    'position': idx + 1,
+    'name': crumb.name,
+    'item': crumb.item.startsWith('http') ? crumb.item : new URL(crumb.item, siteUrl).toString().replace(/\/$/, '') + '/'
+  }))
+};
+
+const calculatorSchema = calculator && {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  'name': calculator.name,
+  'description': calculator.description,
+  'url': calculator.url.startsWith('http') ? calculator.url : new URL(calculator.url, siteUrl).toString().replace(/\/$/, '') + '/',
+  'applicationCategory': 'UtilityApplication',
+  'operatingSystem': 'All',
+  'browserRequirements': 'Requires JavaScript. Requires HTML5.',
+  'offers': {
+    '@type': 'Offer',
+    'price': '0',
+    'priceCurrency': 'EUR'
+  }
+};
+
+const faqSchema = faqs && faqs.length > 0 && {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqs.map((faq) => ({
+    '@type': 'Question',
+    'name': faq.q,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': faq.a
+    }
+  }))
+};
+---
+
+{articleSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+)}
+
+{breadcrumbSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+)}
+
+{calculatorSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(calculatorSchema)} />
+)}
+
+{faqSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+)}

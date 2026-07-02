@@ -1,0 +1,87 @@
+{
+  "slug": "temperature-converter",
+  "category": "conversion",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "temperature-converter",
+  "inputs": [
+    {
+      "key": "value",
+      "type": "number",
+      "min": -500,
+      "max": 10000000,
+      "step": 0.1,
+      "default": 20,
+      "translations": {
+        "en": { "label": "Temperature Value" },
+        "fr": { "label": "Température à convertir" }
+      }
+    },
+    {
+      "key": "fromUnit",
+      "type": "select",
+      "default": "C",
+      "options": [
+        { "value": "C", "translations": { "en": "Celsius (°C)", "fr": "Celsius (°C)" } },
+        { "value": "F", "translations": { "en": "Fahrenheit (°F)", "fr": "Fahrenheit (°F)" } },
+        { "value": "K", "translations": { "en": "Kelvin (K)", "fr": "Kelvin (K)" } }
+      ],
+      "translations": {
+        "en": { "label": "From Unit" },
+        "fr": { "label": "De l'unité" }
+      }
+    },
+    {
+      "key": "toUnit",
+      "type": "select",
+      "default": "F",
+      "options": [
+        { "value": "C", "translations": { "en": "Celsius (°C)", "fr": "Celsius (°C)" } },
+        { "value": "F", "translations": { "en": "Fahrenheit (°F)", "fr": "Fahrenheit (°F)" } },
+        { "value": "K", "translations": { "en": "Kelvin (K)", "fr": "Kelvin (K)" } }
+      ],
+      "translations": {
+        "en": { "label": "To Unit" },
+        "fr": { "label": "Vers l'unité" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "convertedValue",
+      "format": "number",
+      "translations": {
+        "en": { "label": "Converted Temperature" },
+        "fr": { "label": "Température convertie" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Temperature Converter",
+      "slug": "temperature-converter",
+      "metaDescription": "Convert temperatures instantly. Easily translate between Celsius, Fahrenheit, and Kelvin scales with high mathematical precision.",
+      "intro": "A temperature converter is a utility tool designed to convert thermal measurements between the three primary international scales: Celsius, Fahrenheit, and Kelvin. Unlike weight and length, which scale linearly from zero, temperature scales use different starting points (freezing points) and increments. The Celsius scale, standard in Europe and most of the world, is based on the properties of water (freezing at 0°C and boiling at 100°C). The Fahrenheit scale is commonly used in the United States. The Kelvin scale is the absolute scientific standard, starting at absolute zero (0 K). By inputting your value and selecting the starting and target units, you can instantly determine the converted temperature. This tool handles negative temperature values correctly, ensuring exact translations that are useful for weather comparisons, cooking directions, and scientific experiments. Using our converter helps prevent errors when cooking international dishes or reading weather charts from other countries. It provides quick answers that are entirely accurate, letting you work on recipes or projects without double-checking manual formulas.",
+      "methodology": "<p>This temperature converter applies distinct mathematical formulas based on the source and target units:</p><ul><li><strong>Celsius to Fahrenheit:</strong> <code>(Celsius * 9/5) + 32</code></li><li><strong>Celsius to Kelvin:</strong> <code>Celsius + 273.15</code></li><li><strong>Fahrenheit to Celsius:</strong> <code>(Fahrenheit - 32) * 5/9</code></li><li><strong>Kelvin to Celsius:</strong> <code>Kelvin - 273.15</code></li></ul><p>Results are rounded to 2 decimal places of accuracy.</p>",
+      "faq": [
+        { "q": "What temperature is the same in both Celsius and Fahrenheit?", "a": "-40 degrees is the unique intersection point where both Celsius and Fahrenheit scales register the exact same value (-40°C = -40°F)." },
+        { "q": "What is absolute zero?", "a": "Absolute zero is the theoretical lowest temperature possible, where all molecular motion stops. It is defined as 0 Kelvin or -273.15° Celsius." },
+        { "q": "Why does the Kelvin scale not use degrees?", "a": "Kelvin is an absolute scale of measurement, not a relative scale like Celsius or Fahrenheit. Therefore, it is written as K, not °K." }
+      ]
+    },
+    "fr": {
+      "title": "Convertisseur de Température",
+      "slug": "convertisseur-de-temperature",
+      "metaDescription": "Convertissez des unités de température instantanément. Basculez facilement entre Celsius, Fahrenheit et Kelvin.",
+      "intro": "Un convertisseur de température est un outil de calcul conçu pour transcrire des mesures de chaleur ou de froid entre les trois principaux systèmes de mesure mondiaux : Celsius, Fahrenheit et Kelvin. Contrairement aux autres grandeurs de mesure, la conversion de température nécessite d'ajuster à la fois l'échelle d'incrément et le point d'origine (le zéro). Le Celsius, utilisé en Europe, place le point de congélation de l'eau à 0°C. Le Fahrenheit est l'unité standard aux États-Unis. Le Kelvin est l'unité de mesure absolue utilisée en physique et thermodynamique, débutant au zéro absolu (0 K). En renseignant votre température d'origine et en définissant les unités, le simulateur applique la formule appropriée. Cet outil est particulièrement utile pour interpréter des bulletins météo à l'étranger, convertir des recettes de cuisine ou résoudre des problèmes de sciences physiques de manière rigoureuse et rapide. En l'utilisant, vous vous épargnez des calculs manuels fastidieux tout en garantissant des résultats d'une précision absolue pour tous vos besoins de conversion.",
+      "methodology": "<p>Ce convertisseur applique les formules thermodynamiques réglementaires selon les unités choisies :</p><ul><li><strong>Celsius en Fahrenheit :</strong> <code>(Celsius * 9/5) + 32</code></li><li><strong>Celsius en Kelvin :</strong> <code>Celsius + 273.15</code></li><li><strong>Fahrenheit en Celsius :</strong> <code>(Fahrenheit - 32) * 5/9</code></li><li><strong>Kelvin en Celsius :</strong> <code>Kelvin - 273.15</code></li></ul><p>La valeur convertie est arrondie à 2 décimales de précision.</p>",
+      "faq": [
+        { "q": "À quelle température les échelles Celsius et Fahrenheit se croisent-elles ?", "a": "Le point d'équivalence unique se situe à -40 degrés. Ainsi, -40°C est égal à -40°F." },
+        { "q": "Qu'est-ce que le zéro absolu ?", "a": "C'est la température la plus basse possible dans l'univers, caractérisée par une absence totale d'agitation thermique. Elle vaut 0 Kelvin ou -273,15°C." },
+        { "q": "Comment convertir rapidement les degrés Celsius en Fahrenheit ?", "a": "Une règle simplifiée consiste à multiplier la valeur en Celsius par 2 et à y ajouter 30. (Exemple : 20°C &times; 2 + 30 = 70°F, le calcul précis donne 68°F)." }
+      ]
+    }
+  },
+  "relatedTo": ["length-converter", "weight-converter"],
+  "tags": ["conversion", "temperature", "celsius", "fahrenheit"]
+}

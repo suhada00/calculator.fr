@@ -1,0 +1,99 @@
+{
+  "slug": "loan-repayment-calculator",
+  "category": "finance",
+  "status": "published",
+  "updatedAt": "2026-07-02",
+  "formulaId": "loan-repayment",
+  "inputs": [
+    {
+      "key": "loanAmount",
+      "type": "number",
+      "min": 500,
+      "max": 250000,
+      "step": 500,
+      "default": 15000,
+      "translations": {
+        "en": { "label": "Loan Amount (€)" },
+        "fr": { "label": "Montant de l'emprunt (€)" }
+      }
+    },
+    {
+      "key": "interestRate",
+      "type": "number",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "default": 5,
+      "translations": {
+        "en": { "label": "Annual Interest Rate (%)" },
+        "fr": { "label": "Taux d'intérêt annuel (%)" }
+      }
+    },
+    {
+      "key": "termMonths",
+      "type": "number",
+      "min": 1,
+      "max": 120,
+      "step": 1,
+      "default": 36,
+      "translations": {
+        "en": { "label": "Loan Term (months)" },
+        "fr": { "label": "Durée du prêt (mois)" }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "key": "monthlyPayment",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Monthly Repayment" },
+        "fr": { "label": "Mensualité constante" }
+      }
+    },
+    {
+      "key": "totalInterest",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Interest" },
+        "fr": { "label": "Coût total des intérêts" }
+      }
+    },
+    {
+      "key": "totalPayment",
+      "format": "currency",
+      "translations": {
+        "en": { "label": "Total Payment" },
+        "fr": { "label": "Remboursement total" }
+      }
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "Loan Repayment Calculator",
+      "slug": "loan-repayment-calculator",
+      "metaDescription": "Calculate monthly loan payments and total interest costs for personal, auto, or business credit. Free, instant loan simulator.",
+      "intro": "A loan repayment calculator is a general-purpose financial tool designed to help borrowers estimate their monthly repayment duties for any personal, auto, or business loan. When borrowing money, lenders present terms that describe the principal loan amount, the annual interest rate, and the repayment period in months or years. Understanding the relationship between these numbers is crucial for keeping your monthly budget under control. By using this simulator, you can quickly analyze how adjustments to the interest rate or the loan term impact your monthly budget. In addition to calculating the individual monthly check, the tool computes the total of all payments and the total interest charge, illustrating the cost of your debt. Having these figures allows you to compare loan offers from different financial institutions, ensuring you select the most cost-effective credit agreement. Test multiple configurations to manage your debt responsibly. With detailed values in hand, you are empowered to make smarter choices for your personal balance sheet.",
+      "methodology": "<p>This loan calculator uses the standard fixed-installment loan amortization formula:</p><p class='font-mono bg-surface-alt p-3 rounded border border-border my-2'>M = P [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]</p><p>Where <strong>M</strong> is the monthly payment, <strong>P</strong> is the principal loan amount, <strong>r</strong> is the monthly interest rate (annual interest rate divided by 12 months, then divided by 100), and <strong>n</strong> is the total number of monthly payments. If the interest rate is 0%, the monthly payment is computed simply as <code>P / n</code>.</p>",
+      "faq": [
+        { "q": "What is the difference between a fixed-rate and a variable-rate loan?", "a": "A fixed-rate loan maintains the same interest rate and monthly payment throughout the entire term. A variable-rate loan has an interest rate that can fluctuate based on market indices, meaning your payments could increase or decrease." },
+        { "q": "Can I pay off my loan early?", "a": "Yes, most loans allow early repayment (prepayment). However, some lenders charge a prepayment penalty (frais de remboursement anticipé) to compensate for the interest they will lose, so check your loan contract." },
+        { "q": "How does the loan term affect the interest paid?", "a": "A shorter loan term results in higher monthly payments, but you will pay significantly less interest overall. A longer loan term reduces your monthly payment, but increases the total interest paid over the life of the loan." }
+      ]
+    },
+    "fr": {
+      "title": "Simulateur de Crédit & Remboursement",
+      "slug": "simulateur-credit-remboursement",
+      "metaDescription": "Estimez les mensualités de votre crédit auto ou personnel. Calculez le coût total des intérêts de vos emprunts rapidement.",
+      "intro": "Un calculateur de remboursement de prêt est un outil financier polyvalent conçu pour estimer les mensualités de remboursement de tout crédit personnel, auto ou professionnel. Lorsque vous empruntez de l'argent, les banques décrivent les conditions selon le montant du capital, le taux d'intérêt annuel et la durée du remboursement en mois ou en années. Comprendre le lien entre ces chiffres est essentiel pour garder le contrôle de votre budget. Grâce à ce simulateur, vous pouvez analyser rapidement comment la modification de la durée ou du taux influe sur votre mensualité. En plus du montant mensuel, l'outil calcule la somme totale remboursée et le coût des intérêts cumulés, illustrant le prix de votre dette. Ces données vous permettent de comparer efficacement les offres de crédit des différentes banques pour retenir la plus avantageuse. Testez plusieurs hypothèses pour gérer votre endettement de manière responsable. Une bonne visibilité sur vos futures mensualités vous assure d'éviter le surendettement et d'assainir vos finances personnelles.",
+      "methodology": "<p>Ce calculateur de mensualités applique la formule d'amortissement classique à mensualités constantes :</p><p class='font-mono bg-surface-alt p-3 rounded border border-border my-2'>M = P [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]</p><p>Où <strong>M</strong> représente la mensualité, <strong>P</strong> est le capital emprunté, <strong>r</strong> est le taux d'intérêt mensuel (taux annuel divisé par 12 puis par 100), et <strong>n</strong> est la durée du prêt en mois. Si le taux d'intérêt saisi est égal à 0%, l'échéance est simplement calculée par <code>P / n</code>.</p>",
+      "faq": [
+        { "q": "Qu'est-ce que le coût total du crédit ?", "a": "Le coût total du crédit est la différence entre la somme de toutes les mensualités payées et le capital initialement emprunté. Il représente les intérêts payés à l'organisme prêteur." },
+        { "q": "Puis-je rembourser un prêt par anticipation en France ?", "a": "Oui. En France, la loi autorise le remboursement anticipé partiel ou total. Des pénalités de remboursement anticipé (IRA) peuvent toutefois être appliquées selon le contrat, plafonnées à 3% du capital restant dû ou 6 mois d'intérêts." },
+        { "q": "Quel est l'impact de la durée du prêt ?", "a": "Allonger la durée d'un prêt diminue le montant de la mensualité, mais augmente le coût total des intérêts. Raccourcir la durée augmente la mensualité mais permet de réaliser d'importantes économies d'intérêts." }
+      ]
+    }
+  },
+  "relatedTo": ["mortgage-calculator", "notary-fees-calculator", "savings-interest-calculator"],
+  "tags": ["credit", "loan", "repayment"]
+}

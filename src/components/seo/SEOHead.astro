@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  alternateUrls?: Record<string, string>; // Maps locale to path (relative or absolute)
+  noindex?: boolean;
+}
+
+const { title, description, alternateUrls = {}, noindex = false } = Astro.props;
+
+const siteUrl = Astro.site?.origin || 'https://www.eurocalc.eu';
+
+// Create self-referential canonical URL
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString();
+
+// helper to format alternates as absolute URLs
+const getAbsoluteUrl = (path: string) => {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  return new URL(path, siteUrl).toString().replace(/\/$/, '') + '/'; // enforce trailing slash
+};
+
+const hasAlternates = Object.keys(alternateUrls).length > 0;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Canonical -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Robots indexing -->
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+)}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+
+<!-- Hreflang Alternates (programmatic) -->
+{hasAlternates && 
+  Object.entries(alternateUrls).map(([lang, path]) => (
+    <link rel="alternate" hreflang={lang} href={getAbsoluteUrl(path)} />
+  ))
+}
+{hasAlternates && alternateUrls['en'] && (
+  <link rel="alternate" hreflang="x-default" href={getAbsoluteUrl(alternateUrls['en'])} />
+)}
